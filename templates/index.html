@@ -3,105 +3,1135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MindWorx - Profile Generator</title>
+    <title>Mindworx Academy - Admin Dashboard</title>
+    <!-- Milligram CSS for minimal styling -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Our custom styles -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
-        input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
-        button { background: #FF6B35; color: white; padding: 15px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; }
-        button:hover { background: #e55a2b; }
-        .upload-section { border: 2px dashed #ddd; padding: 20px; margin: 20px 0; text-align: center; }
-        .ai-badge { background: #4CAF50; color: white; padding: 5px 10px; border-radius: 3px; font-size: 12px; }
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        header p {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .mindworx-logo-img {
+            height: 48px;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+        
+        .sidebar {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar a {
+            display: block;
+            padding: 12px 15px;
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar a:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        .sidebar a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .sidebar a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .content-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            height: 100%;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .metric-card {
+            text-align: center;
+            padding: 25px 15px;
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .metric-change {
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+        
+        .positive {
+            color: var(--success);
+        }
+        
+        .negative {
+            color: var(--danger);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        th {
+            background-color: var(--light);
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 15px;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-approved {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .status-complete {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-incomplete {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .confidence-high {
+            color: var(--success);
+            font-weight: 600;
+        }
+        
+        .confidence-medium {
+            color: var(--warning);
+            font-weight: 600;
+        }
+        
+        .confidence-low {
+            color: var(--danger);
+            font-weight: 600;
+        }
+        
+        .action-btn {
+            padding: 6px 12px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        
+        .btn-view {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-edit {
+            background-color: var(--warning);
+            color: white;
+        }
+        
+        .btn-approve {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .alert-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .alert-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .filter-section {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-group {
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--success);
+        }
+        
+        .skill-tag {
+            display: inline-block;
+            background-color: #e0e7ff;
+            color: #3730a3;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 2px 5px 2px 0;
+        }
+        
+        .word-cloud {
+            text-align: center;
+            padding: 20px;
+            min-height: 200px;
+        }
+        
+        .word-cloud span {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background-color: #e0e7ff;
+        }
+        
+        .word-1 { font-size: 1.2rem; color: #1e40af; }
+        .word-2 { font-size: 1.5rem; color: #1d4ed8; }
+        .word-3 { font-size: 1.8rem; color: #3b82f6; }
+        .word-4 { font-size: 2.1rem; color: #60a5fa; }
+        .word-5 { font-size: 2.4rem; color: #93c5fd; }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .comparison-table th {
+            background-color: var(--light);
+        }
+        
+        .match-score {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .match-high { color: var(--success); }
+        .match-medium { color: var(--warning); }
+        .match-low { color: var(--danger); }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .quick-action-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            text-align: center;
+            background-color: var(--light);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quick-action-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .quick-action-btn i {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        
+        hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ddd, transparent);
+            margin: 25px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                margin-bottom: 20px;
+            }
+            
+            .quick-actions {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎯 MindWorx Profile Generator</h1>
-        {% if gemini_available %}
-            <div class="ai-badge">🤖 AI Powered</div>
-        {% endif %}
+        <header class="row">
+            <div class="column">
+                <img src="logo.png" alt="Mindworx Logo" class="mindworx-logo-img">
+                <p>Admin Dashboard</p>
+            </div>
+            <div class="column">
+                <button class="button button-outline" id="logoutBtn" style="float: right;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </header>
 
-        <form action="/upload" method="post" enctype="multipart/form-data">
-
-            <h3>Personal Information</h3>
-            <div class="form-group">
-                <label>Full Name *</label>
-                <input type="text" name="full_name" required>
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="column column-25 sidebar">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt"></i>Dashboard Overview
+                    </a></li>
+                    <li><a href="#" class="nav-link" data-section="profiles">
+                        <i class="fas fa-user-graduate"></i>Candidate Profiles
+                    </a></li>
+                    <li><a href="#" class="nav-link" data-section="review">
+                        <i class="fas fa-clipboard-check"></i>Profile Review Queue
+                    </a></li>
+                    <li><a href="#" class="nav-link" data-section="skills">
+                        <i class="fas fa-chart-bar"></i>Skills Analytics
+                    </a></li>
+                    <li><a href="#" class="nav-link" data-section="search">
+                        <i class="fas fa-search"></i>Search & Filters
+                    </a></li>
+                    <li><a href="#" class="nav-link" data-section="reporting">
+                        <i class="fas fa-chart-pie"></i>Reporting & Analytics
+                    </a></li>
+                    <li><a href="#" class="nav-link" data-section="employer">
+                        <i class="fas fa-building"></i>Employer Insights
+                    </a></li>
+                </ul>
             </div>
 
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" name="email">
+            <!-- Main Content Area -->
+            <div class="column column-75">
+                <!-- Dashboard Overview Section -->
+                <section id="dashboard-section" class="content-section">
+                    <h2><i class="fas fa-tachometer-alt"></i> Dashboard Overview</h2>
+                    
+                    <div class="row">
+                        <div class="column column-25">
+                            <div class="card metric-card">
+                                <i class="fas fa-user-graduate fa-2x" style="color: var(--primary);"></i>
+                                <div class="metric-value">247</div>
+                                <div class="metric-label">Total Student Profiles</div>
+                                <div class="metric-change positive">+12% from last month</div>
+                            </div>
+                        </div>
+                        <div class="column column-25">
+                            <div class="card metric-card">
+                                <i class="fas fa-check-circle fa-2x" style="color: var(--success);"></i>
+                                <div class="metric-value">78%</div>
+                                <div class="metric-label">Profile Completion Rate</div>
+                                <div class="metric-change positive">+5% from last month</div>
+                            </div>
+                        </div>
+                        <div class="column column-25">
+                            <div class="card metric-card">
+                                <i class="fas fa-briefcase fa-2x" style="color: var(--warning);"></i>
+                                <div class="metric-value">64%</div>
+                                <div class="metric-label">Placement Readiness</div>
+                                <div class="metric-change positive">+8% from last month</div>
+                            </div>
+                        </div>
+                        <div class="column column-25">
+                            <div class="card metric-card">
+                                <i class="fas fa-flag fa-2x" style="color: var(--danger);"></i>
+                                <div class="metric-value">23</div>
+                                <div class="metric-label">Pending Reviews</div>
+                                <div class="metric-change negative">+3 from yesterday</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="column column-50">
+                            <div class="card">
+                                <h4><i class="fas fa-chart-line"></i> Profile Pipeline</h4>
+                                <div class="chart-container">
+                                    <canvas id="pipelineChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column column-50">
+                            <div class="card">
+                                <h4><i class="fas fa-list-alt"></i> Recent Activity</h4>
+                                <ul id="recentActivityList">
+                                    <li><strong>John Smith</strong> updated his profile (2 hours ago)</li>
+                                    <li><strong>Sarah Johnson</strong> completed her skills assessment (5 hours ago)</li>
+                                    <li><strong>Michael Brown</strong> was approved by Admin (yesterday)</li>
+                                    <li><strong>Emily Davis</strong> added new project experience (2 days ago)</li>
+                                    <li><strong>David Wilson</strong> requested profile review (2 days ago)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="column">
+                            <div class="card">
+                                <h4><i class="fas fa-bolt"></i> Quick Actions</h4>
+                                <div class="quick-actions">
+                                    <div class="quick-action-btn" id="reviewProfilesBtn">
+                                        <i class="fas fa-clipboard-check"></i>
+                                        Review Pending Profiles
+                                    </div>
+                                    <div class="quick-action-btn" id="searchCandidatesBtn">
+                                        <i class="fas fa-search"></i>
+                                        Search Candidates
+                                    </div>
+                                    <div class="quick-action-btn" id="generateReportBtn">
+                                        <i class="fas fa-file-alt"></i>
+                                        Generate Monthly Report
+                                    </div>
+                                    <div class="quick-action-btn" id="sendRemindersBtn">
+                                        <i class="fas fa-bell"></i>
+                                        Send Reminders
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Candidate Profiles Section (Initially Hidden) -->
+                <section id="profiles-section" class="content-section" style="display: none;">
+                    <h2><i class="fas fa-user-graduate"></i> Candidate Profiles</h2>
+                    
+                    <div class="filter-section">
+                        <div class="row">
+                            <div class="column column-50">
+                                <input type="text" id="searchInput" placeholder="Search by name, ID, or program...">
+                            </div>
+                            <div class="column column-25">
+                                <select id="statusFilter">
+                                    <option value="">All Statuses</option>
+                                    <option value="pending">Pending Review</option>
+                                    <option value="approved">Approved</option>
+                                    <option value="complete">Complete</option>
+                                    <option value="incomplete">Incomplete</option>
+                                </select>
+                            </div>
+                            <div class="column column-25">
+                                <button class="button" id="applyFiltersBtn">Apply Filters</button>
+                                <button class="button button-outline" id="bulkActionsBtn">Bulk Actions</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Name</th>
+                                <th>Program</th>
+                                <th>Status</th>
+                                <th>Last Updated</th>
+                                <th>AI Confidence</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="profilesTableBody">
+                            <tr>
+                                <td>MW2023001</td>
+                                <td>John Smith</td>
+                                <td>Data Science</td>
+                                <td><span class="status-badge status-approved">Approved</span></td>
+                                <td>2023-10-20</td>
+                                <td class="confidence-high">92%</td>
+                                <td>
+                                    <button class="action-btn btn-view">View</button>
+                                    <button class="action-btn btn-edit">Edit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>MW2023002</td>
+                                <td>Sarah Johnson</td>
+                                <td>Business Analytics</td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td>2023-10-22</td>
+                                <td class="confidence-medium">76%</td>
+                                <td>
+                                    <button class="action-btn btn-view">View</button>
+                                    <button class="action-btn btn-edit">Edit</button>
+                                    <button class="action-btn btn-approve">Approve</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>MW2023003</td>
+                                <td>Michael Brown</td>
+                                <td>Software Engineering</td>
+                                <td><span class="status-badge status-complete">Complete</span></td>
+                                <td>2023-10-18</td>
+                                <td class="confidence-high">95%</td>
+                                <td>
+                                    <button class="action-btn btn-view">View</button>
+                                    <button class="action-btn btn-edit">Edit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>MW2023004</td>
+                                <td>Emily Davis</td>
+                                <td>UX Design</td>
+                                <td><span class="status-badge status-incomplete">Incomplete</span></td>
+                                <td>2023-10-15</td>
+                                <td class="confidence-low">45%</td>
+                                <td>
+                                    <button class="action-btn btn-view">View</button>
+                                    <button class="action-btn btn-edit">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Profile Review Queue Section (Initially Hidden) -->
+                <section id="review-section" class="content-section" style="display: none;">
+                    <h2><i class="fas fa-clipboard-check"></i> Profile Review Queue</h2>
+                    
+                    <div class="alert alert-info">
+                        <strong><i class="fas fa-info-circle"></i> AI Flagged Profiles:</strong> These profiles require human review before publication to employers.
+                    </div>
+                    
+                    <div class="filter-section">
+                        <div class="row">
+                            <div class="column column-50">
+                                <label>Filter by Confidence Level:</label>
+                                <select id="confidenceFilter">
+                                    <option value="">All Levels</option>
+                                    <option value="low">Low Confidence (< 60%)</option>
+                                    <option value="medium">Medium Confidence (60-80%)</option>
+                                    <option value="high">High Confidence (> 80%)</option>
+                                </select>
+                            </div>
+                            <div class="column column-50">
+                                <label>Sort By:</label>
+                                <select id="sortReview">
+                                    <option value="date">Date Added</option>
+                                    <option value="confidence">AI Confidence</option>
+                                    <option value="name">Student Name</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="reviewQueue">
+                        <div class="card" style="margin-bottom: 15px;">
+                            <div class="row">
+                                <div class="column column-70">
+                                    <h4>Sarah Johnson <span class="status-badge status-pending">Pending Review</span></h4>
+                                    <p><strong>Program:</strong> Business Analytics</p>
+                                    <p><strong>AI Confidence:</strong> <span class="confidence-medium">76%</span></p>
+                                    <p><strong>Flagged Issues:</strong> Inconsistent work history dates, Missing project descriptions</p>
+                                    <div class="skill-tags">
+                                        <span class="skill-tag">Data Analysis</span>
+                                        <span class="skill-tag">SQL</span>
+                                        <span class="skill-tag">Tableau</span>
+                                        <span class="skill-tag">Python</span>
+                                    </div>
+                                </div>
+                                <div class="column column-30" style="text-align: right;">
+                                    <button class="button btn-approve">Approve</button>
+                                    <button class="button btn-edit">Edit & Review</button>
+                                    <button class="button button-outline">Request Info</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card" style="margin-bottom: 15px;">
+                            <div class="row">
+                                <div class="column column-70">
+                                    <h4>David Wilson <span class="status-badge status-pending">Pending Review</span></h4>
+                                    <p><strong>Program:</strong> Digital Marketing</p>
+                                    <p><strong>AI Confidence:</strong> <span class="confidence-low">45%</span></p>
+                                    <p><strong>Flagged Issues:</strong> Skills don't match experience, Low completion rate</p>
+                                    <div class="skill-tags">
+                                        <span class="skill-tag">SEO</span>
+                                        <span class="skill-tag">Content Marketing</span>
+                                        <span class="skill-tag">Social Media</span>
+                                    </div>
+                                </div>
+                                <div class="column column-30" style="text-align: right;">
+                                    <button class="button btn-approve">Approve</button>
+                                    <button class="button btn-edit">Edit & Review</button>
+                                    <button class="button button-outline">Request Info</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Skills Analytics Section (Initially Hidden) -->
+                <section id="skills-section" class="content-section" style="display: none;">
+                    <h2><i class="fas fa-chart-bar"></i> Skills Analytics</h2>
+                    
+                    <div class="row">
+                        <div class="column column-50">
+                            <div class="card">
+                                <h4><i class="fas fa-cloud"></i> Top Skills Inventory</h4>
+                                <div class="word-cloud">
+                                    <span class="word-5">Python</span>
+                                    <span class="word-4">Data Analysis</span>
+                                    <span class="word-3">JavaScript</span>
+                                    <span class="word-4">SQL</span>
+                                    <span class="word-2">Machine Learning</span>
+                                    <span class="word-3">React</span>
+                                    <span class="word-1">Tableau</span>
+                                    <span class="word-2">Communication</span>
+                                    <span class="word-1">Project Management</span>
+                                    <span class="word-3">Problem Solving</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column column-50">
+                            <div class="card">
+                                <h4><i class="fas fa-chart-pie"></i> Skills Distribution</h4>
+                                <div class="chart-container">
+                                    <canvas id="skillsDistributionChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="column">
+                            <div class="card">
+                                <h4><i class="fas fa-search-minus"></i> Skills Gap Analysis</h4>
+                                <p>Comparing student skills with current market demands</p>
+                                <div class="chart-container">
+                                    <canvas id="skillsGapChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="column">
+                            <div class="card">
+                                <h4><i class="fas fa-user-check"></i> Candidate Suitability Matcher</h4>
+                                <div class="row">
+                                    <div class="column column-70">
+                                        <textarea id="jobDescription" placeholder="Paste job description here..." rows="5" style="width: 100%; padding: 10px;"></textarea>
+                                    </div>
+                                    <div class="column column-30">
+                                        <button class="button" style="width: 100%; margin-top: 10px;">Match Candidates</button>
+                                        <button class="button button-outline" style="width: 100%; margin-top: 10px;">Save as Template</button>
+                                    </div>
+                                </div>
+                                
+                                <div id="matchingResults" style="margin-top: 20px; display: none;">
+                                    <h5>Top Matching Candidates:</h5>
+                                    <table class="comparison-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Candidate</th>
+                                                <th>Match Score</th>
+                                                <th>Key Skills</th>
+                                                <th>Program</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>John Smith</td>
+                                                <td class="match-score match-high">94%</td>
+                                                <td>Python, SQL, Machine Learning</td>
+                                                <td>Data Science</td>
+                                                <td><button class="button button-small">View Profile</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Michael Brown</td>
+                                                <td class="match-score match-high">89%</td>
+                                                <td>JavaScript, React, Node.js</td>
+                                                <td>Software Engineering</td>
+                                                <td><button class="button button-small">View Profile</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sarah Johnson</td>
+                                                <td class="match-score match-medium">76%</td>
+                                                <td>Data Analysis, Tableau, SQL</td>
+                                                <td>Business Analytics</td>
+                                                <td><button class="button button-small">View Profile</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Search & Filters Section (Initially Hidden) -->
+                <section id="search-section" class="content-section" style="display: none;">
+                    <h2><i class="fas fa-search"></i> Advanced Search & Filters</h2>
+                    <p>This section provides advanced search capabilities for finding specific candidates.</p>
+                    
+                    <div class="filter-section">
+                        <div class="row">
+                            <div class="column column-25">
+                                <label>Skills</label>
+                                <input type="text" placeholder="e.g., Python, SQL">
+                            </div>
+                            <div class="column column-25">
+                                <label>Program</label>
+                                <select>
+                                    <option value="">All Programs</option>
+                                    <option value="data-science">Data Science</option>
+                                    <option value="business-analytics">Business Analytics</option>
+                                    <option value="software-engineering">Software Engineering</option>
+                                    <option value="ux-design">UX Design</option>
+                                    <option value="digital-marketing">Digital Marketing</option>
+                                </select>
+                            </div>
+                            <div class="column column-25">
+                                <label>Graduation Year</label>
+                                <select>
+                                    <option value="">Any</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                </select>
+                            </div>
+                            <div class="column column-25">
+                                <label>GPA Range</label>
+                                <select>
+                                    <option value="">Any</option>
+                                    <option value="3.5-4.0">3.5 - 4.0</option>
+                                    <option value="3.0-3.5">3.0 - 3.5</option>
+                                    <option value="2.5-3.0">2.5 - 3.0</option>
+                                    <option value="2.0-2.5">2.0 - 2.5</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="column column-25">
+                                <label>Work Style</label>
+                                <select>
+                                    <option value="">Any</option>
+                                    <option value="analytical">Analytical</option>
+                                    <option value="collaborative">Collaborative</option>
+                                    <option value="independent">Independent</option>
+                                    <option value="creative">Creative</option>
+                                </select>
+                            </div>
+                            <div class="column column-25">
+                                <label>Experience Level</label>
+                                <select>
+                                    <option value="">Any</option>
+                                    <option value="internship">Internship</option>
+                                    <option value="entry-level">Entry Level</option>
+                                    <option value="mid-level">Mid Level</option>
+                                </select>
+                            </div>
+                            <div class="column column-25">
+                                <label>Status</label>
+                                <select>
+                                    <option value="">Any</option>
+                                    <option value="approved">Approved</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="complete">Complete</option>
+                                </select>
+                            </div>
+                            <div class="column column-25">
+                                <label>AI Confidence</label>
+                                <select>
+                                    <option value="">Any</option>
+                                    <option value="high">High (>80%)</option>
+                                    <option value="medium">Medium (60-80%)</option>
+                                    <option value="low">Low (<60%)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="column">
+                                <button class="button">Search</button>
+                                <button class="button button-outline">Save Search</button>
+                                <button class="button button-outline">Reset Filters</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>Search Results</h4>
+                        <p>Use the filters above to find candidates. Results will appear here.</p>
+                    </div>
+                </section>
+
+                <!-- Reporting & Analytics Section (Initially Hidden) -->
+                <section id="reporting-section" class="content-section" style="display: none;">
+                    <h2><i class="fas fa-chart-pie"></i> Reporting & Analytics</h2>
+                    
+                    <div class="row">
+                        <div class="column">
+                            <div class="card">
+                                <h4><i class="fas fa-chart-line"></i> Trends Over Time</h4>
+                                <div class="chart-container">
+                                    <canvas id="trendsChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="column column-50">
+                            <div class="card">
+                                <h4><i class="fas fa-graduation-cap"></i> Program Distribution</h4>
+                                <div class="chart-container">
+                                    <canvas id="programDistributionChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column column-50">
+                            <div class="card">
+                                <h4><i class="fas fa-briefcase"></i> Placement Status</h4>
+                                <div class="chart-container">
+                                    <canvas id="placementChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="column">
+                            <div class="card">
+                                <h4><i class="fas fa-download"></i> Generate Reports</h4>
+                                <div class="quick-actions">
+                                    <div class="quick-action-btn">
+                                        <i class="fas fa-file-alt"></i>
+                                        Monthly Summary
+                                    </div>
+                                    <div class="quick-action-btn">
+                                        <i class="fas fa-chart-bar"></i>
+                                        Skills Analysis
+                                    </div>
+                                    <div class="quick-action-btn">
+                                        <i class="fas fa-user-check"></i>
+                                        Placement Report
+                                    </div>
+                                    <div class="quick-action-btn">
+                                        <i class="fas fa-building"></i>
+                                        Employer Activity
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Employer Insights Section (Initially Hidden) -->
+                <section id="employer-section" class="content-section" style="display: none;">
+                    <h2><i class="fas fa-building"></i> Employer Insights</h2>
+                    
+                    <div class="row">
+                        <div class="column column-25">
+                            <div class="card metric-card">
+                                <i class="fas fa-eye fa-2x" style="color: var(--primary);"></i>
+                                <div class="metric-value">1,247</div>
+                                <div class="metric-label">Profile Views</div>
+                                <div class="metric-change positive">+18% from last month</div>
+                            </div>
+                        </div>
+                        <div class="column column-25">
+                            <div class="card metric-card">
+                                <i class="fas fa-handshake fa-2x" style="color: var(--success);"></i>
+                                <div class="metric-value">42</div>
+                                <div class="metric-label">Interview Requests</div>
+                                <div class="metric-change positive">+5 from last month</div>
+                            </div>
+                        </div>
+                        <div class="column column-25">
+                            <div class="card metric-card">
+                                <i class="fas fa-briefcase fa-2x" style="color: var(--warning);"></i>
+                                <div class="metric-value">28</div>
+                                <div class="metric-label">Placements</div>
+                                <div class="metric-change positive">+3 from last month</div>
+                            </div>
+                        </div>
+                        <div class="column column-25">
+                            <div class="card metric-card">
+                                <i class="fas fa-search fa-2x" style="color: var(--secondary);"></i>
+                                <div class="metric-value">356</div>
+                                <div class="metric-label">Searches Conducted</div>
+                                <div class="metric-change positive">+22% from last month</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="column column-50">
+                            <div class="card">
+                                <h4><i class="fas fa-chart-line"></i> Employer Activity</h4>
+                                <div class="chart-container">
+                                    <canvas id="employerActivityChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column column-50">
+                            <div class="card">
+                                <h4><i class="fas fa-industry"></i> Top Industries</h4>
+                                <div class="chart-container">
+                                    <canvas id="industriesChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="column">
+                            <div class="card">
+                                <h4><i class="fas fa-list-alt"></i> Recent Employer Activity</h4>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Employer</th>
+                                            <th>Activity</th>
+                                            <th>Candidate</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Tech Solutions Inc.</td>
+                                            <td>Requested Interview</td>
+                                            <td>John Smith</td>
+                                            <td>2023-10-24</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Data Analytics Pro</td>
+                                            <td>Viewed Profile</td>
+                                            <td>Sarah Johnson</td>
+                                            <td>2023-10-23</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Innovate Software</td>
+                                            <td>Shortlisted</td>
+                                            <td>Michael Brown</td>
+                                            <td>2023-10-22</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Digital Creations</td>
+                                            <td>Requested Interview</td>
+                                            <td>Emily Davis</td>
+                                            <td>2023-10-21</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-
-            <div class="form-group">
-                <label>Phone</label>
-                <input type="tel" name="phone">
-            </div>
-
-            <div class="form-group">
-                <label>Location</label>
-                <input type="text" name="location">
-            </div>
-
-            <div class="form-group">
-                <label>Current Role *</label>
-                <input type="text" name="current_role" required>
-            </div>
-
-            <div class="form-group">
-                <label>Professional Summary</label>
-                <textarea name="professional_summary" rows="4" placeholder="Tell us about your professional background..."></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>Technical Skills (comma separated)</label>
-                <textarea name="technical_skills" rows="3" placeholder="Python, JavaScript, SQL, React..."></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>Soft Skills (comma separated)</label>
-                <textarea name="soft_skills" rows="3" placeholder="Communication, Leadership, Problem-solving..."></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>Years of Experience</label>
-                <input type="number" name="years_experience" min="0" max="50">
-            </div>
-
-            <div class="form-group">
-                <label>Projects Description</label>
-                <textarea name="projects" rows="4" placeholder="Describe your key projects..."></textarea>
-            </div>
-
-            <div class="upload-section">
-                <h3>📁 Upload Documents</h3>
-
-                <div class="form-group">
-                    <label>CV/Resume (PDF)</label>
-                    <input type="file" name="cv" accept=".pdf">
-                </div>
-
-                <div class="form-group">
-                    <label>Academic Transcript (PDF)</label>
-                    <input type="file" name="transcript" accept=".pdf">
-                </div>
-
-                <div class="form-group">
-                    <label>Additional Qualifications (PDF)</label>
-                    <input type="file" name="qualifications" accept=".pdf">
-                </div>
-
-                <div class="form-group">
-                    <label>Profile Picture</label>
-                    <input type="file" name="picture" accept=".jpg,.jpeg,.png">
-                </div>
-            </div>
-
-            <button type="submit">Generate Profile</button>
-        </form>
+        </div>
     </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="api-client.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Basic navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation between sections
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Hide all content sections
+                    contentSections.forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    
+                    // Show the selected section
+                    const sectionId = this.getAttribute('data-section') + '-section';
+                    document.getElementById(sectionId).style.display = 'block';
+                });
+            });
+            
+            // Quick action buttons
+            document.getElementById('reviewProfilesBtn').addEventListener('click', function() {
+                navLinks.forEach(l => l.classList.remove('active'));
+                document.querySelector('[data-section="review"]').classList.add('active');
+                
+                contentSections.forEach(section => {
+                    section.style.display = 'none';
+                });
+                document.getElementById('review-section').style.display = 'block';
+            });
+            
+            document.getElementById('searchCandidatesBtn').addEventListener('click', function() {
+                navLinks.forEach(l => l.classList.remove('active'));
+                document.querySelector('[data-section="search"]').classList.add('active');
+                
+                contentSections.forEach(section => {
+                    section.style.display = 'none';
+                });
+                document.getElementById('search-section').style.display = 'block';
+            });
+            
+            // Initialize charts (simplified version)
+            const pipelineCtx = document.getElementById('pipelineChart').getContext('2d');
+            const pipelineChart = new Chart(pipelineCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Incomplete', 'Pending Review', 'Approved', 'Complete'],
+                    datasets: [{
+                        label: 'Number of Profiles',
+                        data: [35, 23, 124, 65],
+                        backgroundColor: [
+                            '#e74c3c',
+                            '#f39c12',
+                            '#3498db',
+                            '#2ecc71'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>

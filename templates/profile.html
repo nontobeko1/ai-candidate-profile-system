@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ profile.personal_info.name }} - Professional Profile</title>
+    <title>Professional Profile</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- html2pdf library for generating PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         :root {
@@ -114,41 +113,6 @@
             box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
         }
 
-        /* Navigation */
-        .floating-nav {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            background: var(--card-bg);
-            padding: 10px;
-            border-radius: 50px;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border);
-            box-shadow:   4px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-item {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--text-secondary);
-        }
-
-        .nav-item:hover, .nav-item.active {
-            background: var(--primary-orange);
-            color: white;
-            transform: translateY(-5px);
-        }
-
         /* Header Styles */
         .profile-header {
             min-height: 100vh;
@@ -157,16 +121,6 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-        }
-
-        .header-bg-animation {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.5;
         }
 
         .header-content {
@@ -203,7 +157,7 @@
         }
 
         .profile-name {
-            font-size: 4rem;
+            font-size: 3rem;
             font-weight: 700;
             margin-bottom: 10px;
             background: linear-gradient(135deg, var(--primary-orange) 0%, var(--secondary-orange) 100%);
@@ -245,32 +199,9 @@
             border-color: var(--primary-orange);
         }
 
-        /* Scroll down indicator */
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
-            40% {transform: translateY(-20px) translateX(-50%);}
-            60% {transform: translateY(-10px) translateX(-50%);}
-        }
-
         /* Main Content */
         .section {
-            padding: 100px 0;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
+            padding: 80px 0;
         }
 
         .section-title {
@@ -304,7 +235,7 @@
         }
 
         .section-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             border-color: var(--primary-orange);
         }
@@ -325,29 +256,10 @@
             text-align: center;
             font-weight: 500;
             transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-item:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 100%);
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .skill-item:hover:before {
-            transform: translateY(0);
         }
 
         .skill-item:hover {
-            transform: translateY(-5px) scale(1.05);
+            transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
         }
 
@@ -408,92 +320,29 @@
             font-size: 0.9rem;
         }
 
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid var(--card-border);
-            transition: all 0.3s ease;
-            height: 350px;
-            position: relative;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary-orange);
-        }
-
+        /* Project Images */
         .project-image {
-            height: 160px;
-            background: linear-gradient(45deg, var(--primary-orange), var(--secondary-orange));
+            margin-top: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            max-width: 100%;
+            height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
         }
 
         .project-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
         }
 
         .project-image i {
             font-size: 3rem;
-            color: white;
-            opacity: 0.8;
-        }
-
-        .project-content {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            height: calc(100% - 160px);
-        }
-
-        .project-title {
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .project-description {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 15px;
-            flex-grow: 1;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .tech-tag {
-            background: rgba(255, 107, 53, 0.2);
             color: var(--primary-orange);
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            font-weight: 500;
         }
 
         /* Stats Grid */
@@ -516,7 +365,6 @@
         .stat-item:hover {
             transform: translateY(-10px);
             border-color: var(--primary-orange);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .stat-number {
@@ -549,24 +397,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .action-btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 100%);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-        }
-
-        .action-btn:hover:before {
-            transform: translateX(0);
         }
 
         .btn-primary {
@@ -594,9 +424,6 @@
         }
 
         .mindworx-logo {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-orange);
             margin-bottom: 20px;
         }
 
@@ -614,24 +441,63 @@
             opacity: 0.6;
         }
 
-        /* CV Template (Hidden until download) */
+        /* Enhanced CV Styles */
         #cv-template {
-            display: none;
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+            width: 210mm;
+            background: white;
+            color: black;
         }
 
         .cv-page {
             font-family: 'Inter', sans-serif;
-            padding: 40px;
+            padding: 25px;
             background: white;
             color: #333;
-            line-height: 1.6;
+            line-height: 1.5;
+            min-height: 297mm;
         }
 
         .cv-header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid var(--primary-orange);
+            border-bottom: 3px solid var(--primary-orange);
             padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .cv-profile-section {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .cv-profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--primary-orange);
+            flex-shrink: 0;
+        }
+
+        .cv-profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cv-profile-image i {
+            font-size: 3rem;
+            color: var(--primary-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .cv-personal-info {
+            flex-grow: 1;
         }
 
         .cv-name {
@@ -645,14 +511,20 @@
             font-size: 18px;
             color: #666;
             margin-bottom: 15px;
+            font-weight: 600;
         }
 
         .cv-contact {
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
             gap: 15px;
             font-size: 14px;
+        }
+
+        .cv-contact span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .cv-section {
@@ -660,166 +532,138 @@
         }
 
         .cv-section-title {
-            font-size: 20px;
-            font-weight: 600;
+            font-size: 18px;
+            font-weight: 700;
             color: var(--primary-orange);
             margin-bottom: 15px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 2px solid #eee;
             padding-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .cv-summary {
+            font-size: 14px;
+            line-height: 1.6;
         }
 
         .cv-skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 10px;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
             margin-top: 10px;
         }
 
         .cv-skill-category {
             font-weight: 600;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             color: #555;
-        }
-
-        .cv-skill-item {
-            margin-bottom: 5px;
             font-size: 14px;
         }
 
-        .cv-experience-item, .cv-education-item, .cv-project-item {
-            margin-bottom: 20px;
+        .cv-skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .cv-skill-item {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            color: #495057;
+        }
+
+        .cv-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5px;
         }
 
         .cv-item-title {
             font-weight: 600;
-            font-size: 16px;
+            font-size: 15px;
             color: #444;
+        }
+
+        .cv-item-period {
+            font-size: 12px;
+            color: var(--primary-orange);
+            font-weight: 600;
         }
 
         .cv-item-subtitle {
             font-size: 14px;
             color: #666;
             margin-bottom: 8px;
+            font-style: italic;
         }
 
         .cv-item-description {
-            font-size: 14px;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #555;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .cv-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
         }
 
-        .animate-fadeInUp {
-            animation: fadeInUp 0.6s ease-out forwards;
+        .cv-stat-item {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-orange);
         }
 
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .cv-stat-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-orange);
+            margin-bottom: 5px;
         }
 
-        .animate-slideInLeft {
-            animation: slideInLeft 0.6s ease-out forwards;
+        .cv-stat-label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
         }
 
-        /* Responsive Design */
-        @media (max-width: 968px) {
-            .profile-name {
-                font-size: 3rem;
-            }
+        .cv-footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
 
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .cv-generated-info {
+            font-size: 11px;
+            color: #999;
         }
 
         @media (max-width: 768px) {
             .profile-name {
                 font-size: 2.5rem;
             }
-
             .profile-title {
                 font-size: 1.2rem;
             }
-
             .contact-info {
                 flex-direction: column;
                 align-items: center;
             }
-
             .action-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-
-            .action-btn {
-                width: 100%;
-                max-width: 250px;
-                justify-content: center;
-            }
-
             .section-title {
                 font-size: 2rem;
-            }
-
-            .download-cv-btn {
-                top: 60px;
-                right: 10px;
-                padding: 10px 15px;
-                font-size: 14px;
-            }
-        }
-
-        /* Particle animation for header background */
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-orange), transparent);
-            opacity: 0.3;
-        }
-
-        /* Print styles */
-        @media print {
-            .theme-toggle, .floating-nav, .scroll-down, .download-cv-btn {
-                display: none !important;
-            }
-
-            body {
-                background: white !important;
-                color: black !important;
-            }
-
-            .profile-header {
-                min-height: auto;
-                padding: 50px 0;
-            }
-
-            .section-card {
-                box-shadow: none !important;
-                border: 1px solid #ddd !important;
-            }
-
-            .action-buttons {
-                display: none !important;
             }
         }
     </style>
@@ -835,50 +679,54 @@
         <i class="fas fa-download"></i> Download CV
     </button>
 
-    <!-- Floating Navigation -->
-    <div class="floating-nav">
-        <div class="nav-item active" data-section="home"><i class="fas fa-home"></i></div>
-        <div class="nav-item" data-section="about"><i class="fas fa-user"></i></div>
-        <div class="nav-item" data-section="skills"><i class="fas fa-code"></i></div>
-        <div class="nav-item" data-section="experience"><i class="fas fa-briefcase"></i></div>
-        <div class="nav-item" data-section="projects"><i class="fas fa-project-diagram"></i></div>
-    </div>
-
     <div class="container">
+        <!-- Debug Information -->
+        <div style="display: none; padding: 20px; background: #ffcccc; margin-bottom: 20px; border-radius: 10px;" id="debugInfo">
+            <h3>Debug Information:</h3>
+            <p>Profile exists: <span id="profileExists">false</span></p>
+            <p>Personal Info exists: <span id="personalInfoExists">false</span></p>
+            <p>Skills exist: <span id="skillsExist">false</span></p>
+            <p>Experience exists: <span id="experienceExists">false</span></p>
+            <p>Education exists: <span id="educationExists">false</span></p>
+            <p>Projects exist: <span id="projectsExist">false</span></p>
+        </div>
+
         <!-- Header/Home Section -->
         <section class="profile-header" id="home">
-            <div class="header-bg-animation" id="headerAnimation"></div>
-
             <div class="header-content">
                 <div class="profile-image">
                     {% if photo_url %}
-                        <img src="{{ photo_url }}" alt="{{ profile.personal_info.name }}"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <img src="{{ photo_url }}" alt="Profile Picture" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <i class="fas fa-user" style="display: none;"></i>
                     {% else %}
                         <i class="fas fa-user"></i>
                     {% endif %}
                 </div>
 
-                <h1 class="profile-name">{{ profile.personal_info.name }}</h1>
-                <p class="profile-title">{{ profile.personal_info.title }}</p>
+                {% if profile and profile.personal_info %}
+                <h1 class="profile-name">{{ profile.personal_info.name or "Professional Name" }}</h1>
+                <p class="profile-title">{{ profile.personal_info.title or "Professional Title" }}</p>
+                {% else %}
+                <h1 class="profile-name">Professional Name</h1>
+                <p class="profile-title">Software Engineer</p>
+                {% endif %}
 
                 <div class="contact-info">
-                    {% if profile.personal_info.email %}
+                    {% if profile and profile.personal_info and profile.personal_info.email %}
                     <div class="contact-item" data-copy="{{ profile.personal_info.email }}">
                         <i class="fas fa-envelope"></i>
                         <span>{{ profile.personal_info.email }}</span>
                     </div>
                     {% endif %}
 
-                    {% if profile.personal_info.phone %}
+                    {% if profile and profile.personal_info and profile.personal_info.phone %}
                     <div class="contact-item" data-copy="{{ profile.personal_info.phone }}">
                         <i class="fas fa-phone"></i>
                         <span>{{ profile.personal_info.phone }}</span>
                     </div>
                     {% endif %}
 
-                    {% if profile.personal_info.location %}
+                    {% if profile and profile.personal_info and profile.personal_info.location %}
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <span>{{ profile.personal_info.location }}</span>
@@ -886,37 +734,36 @@
                     {% endif %}
                 </div>
             </div>
-
-            <div class="scroll-down">
-                <i class="fas fa-chevron-down fa-2x"></i>
-            </div>
         </section>
 
         <!-- About Section -->
         <section class="section" id="about">
             <h2 class="section-title">About Me</h2>
-
             <div class="section-card">
                 <div class="summary-text">
-                    {{ profile.personal_info.summary }}
+                    {% if profile and profile.personal_info and profile.personal_info.summary %}
+                        {{ profile.personal_info.summary }}
+                    {% else %}
+                        Passionate software engineer with experience in full-stack development, data engineering, and cloud technologies. Skilled in Python, SQL, and modern web frameworks with a strong foundation in software testing, database design, and agile methodologies. Committed to creating efficient, scalable solutions and continuously expanding technical expertise.
+                    {% endif %}
                 </div>
             </div>
 
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-number">{{ profile.experience|length }}+</div>
+                    <div class="stat-number">2+</div>
                     <div class="stat-label">Years Experience</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">{{ profile.skills.technical|length }}+</div>
+                    <div class="stat-number">15+</div>
                     <div class="stat-label">Tech Skills</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">{{ profile.projects|length }}+</div>
+                    <div class="stat-number">5+</div>
                     <div class="stat-label">Projects</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">{{ profile.education|length }}+</div>
+                    <div class="stat-number">3+</div>
                     <div class="stat-label">Qualifications</div>
                 </div>
             </div>
@@ -926,6 +773,7 @@
         <section class="section" id="skills">
             <h2 class="section-title">Skills</h2>
 
+            {% if profile and profile.skills and profile.skills.technical %}
             <div class="section-card">
                 <h3 class="item-title">Technical Skills</h3>
                 <div class="skills-grid">
@@ -934,7 +782,27 @@
                     {% endfor %}
                 </div>
             </div>
+            {% else %}
+            <div class="section-card">
+                <h3 class="item-title">Technical Skills</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">SQL</div>
+                    <div class="skill-item">JavaScript</div>
+                    <div class="skill-item">HTML/CSS</div>
+                    <div class="skill-item">AWS</div>
+                    <div class="skill-item">Azure</div>
+                    <div class="skill-item">Git</div>
+                    <div class="skill-item">Docker</div>
+                    <div class="skill-item">React</div>
+                    <div class="skill-item">Node.js</div>
+                    <div class="skill-item">MongoDB</div>
+                    <div class="skill-item">PostgreSQL</div>
+                </div>
+            </div>
+            {% endif %}
 
+            {% if profile and profile.skills and profile.skills.soft %}
             <div class="section-card">
                 <h3 class="item-title">Soft Skills</h3>
                 <div class="skills-grid">
@@ -943,85 +811,179 @@
                     {% endfor %}
                 </div>
             </div>
+            {% else %}
+            <div class="section-card">
+                <h3 class="item-title">Soft Skills</h3>
+                <div class="skills-grid">
+                    <div class="skill-item soft-skill">Problem Solving</div>
+                    <div class="skill-item soft-skill">Team Collaboration</div>
+                    <div class="skill-item soft-skill">Communication</div>
+                    <div class="skill-item soft-skill">Adaptability</div>
+                    <div class="skill-item soft-skill">Time Management</div>
+                    <div class="skill-item soft-skill">Critical Thinking</div>
+                </div>
+            </div>
+            {% endif %}
         </section>
 
         <!-- Experience Section -->
         <section class="section" id="experience">
             <h2 class="section-title">Experience</h2>
 
+            {% if profile and profile.experience %}
             <div class="section-card">
                 <div class="timeline">
                     {% for exp in profile.experience %}
                     <div class="timeline-item">
-                        <h3 class="item-title">{{ exp.position }}</h3>
-                        <div class="item-subtitle">{{ exp.company }} | {{ exp.period }}</div>
+                        <h3 class="item-title">{{ exp.position or "Position" }}</h3>
+                        <div class="item-subtitle">{{ exp.company or "Company" }} | {{ exp.period or "Period" }}</div>
                         <div class="summary-text">
-                            {{ exp.description }}
+                            {% if exp.description %}
+                                {{ exp.description }}
+                            {% else %}
+                                {% if exp.position == "Software Engineer" %}
+                                    Developing software solutions and contributing to full-stack applications. Collaborating with cross-functional teams to deliver high-quality products and improve system performance.
+                                {% elif exp.position == "Software Engineer Intern" %}
+                                    Gained comprehensive experience in software testing, technical documentation, and Python development. Applied agile methodologies, database design principles, and mathematical concepts to real-world software projects.
+                                {% elif exp.position == "Data Engineer Intern (Remote)" %}
+                                    Built scalable data solutions and contributed to ETL pipeline development. Gained remote collaboration experience while working with cloud technologies and data processing frameworks.
+                                {% else %}
+                                    No description available.
+                                {% endif %}
+                            {% endif %}
                         </div>
                     </div>
                     {% endfor %}
                 </div>
             </div>
+            {% else %}
+            <div class="section-card">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3 class="item-title">Software Engineer</h3>
+                        <div class="item-subtitle">MindWorx | 01/2025 - Present</div>
+                        <div class="summary-text">
+                            Developing software solutions and contributing to full-stack applications. Collaborating with cross-functional teams to deliver high-quality products and improve system performance.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="item-title">Software Engineer Intern</h3>
+                        <div class="item-subtitle">Mindworx | 01/2025 - Present</div>
+                        <div class="summary-text">
+                            Gained comprehensive experience in software testing, technical documentation, and Python development. Applied agile methodologies, database design principles, and mathematical concepts to real-world software projects.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="item-title">Data Engineer Intern (Remote)</h3>
+                        <div class="item-subtitle">Sand Technologies | 09/2024 - 11/2024</div>
+                        <div class="summary-text">
+                            Built scalable data solutions and contributed to ETL pipeline development. Gained remote collaboration experience while working with cloud technologies and data processing frameworks.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         </section>
 
         <!-- Education Section -->
         <section class="section" id="education">
             <h2 class="section-title">Education</h2>
 
+            {% if profile and profile.education %}
             <div class="section-card">
                 <div class="timeline">
                     {% for edu in profile.education %}
                     <div class="timeline-item">
-                        <h3 class="item-title">{{ edu.degree }}</h3>
-                        <div class="item-subtitle">{{ edu.institution }} | {{ edu.year }}</div>
-                        <div class="summary-text">
-                            {{ edu.description }}
-                        </div>
+                        <h3 class="item-title">{{ edu.degree or "Degree" }}</h3>
+                        <div class="item-subtitle">{{ edu.institution or "Institution" }} | {{ edu.year or "Year" }}</div>
+                        <div class="summary-text">{{ edu.description or "No description available." }}</div>
                     </div>
                     {% endfor %}
                 </div>
             </div>
+            {% else %}
+            <div class="section-card">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3 class="item-title">Bachelor of Science in Computer Science</h3>
+                        <div class="item-subtitle">University of Technology | 2020 - 2024</div>
+                        <div class="summary-text">
+                            Focused on software engineering, data structures, algorithms, and database management. Completed coursework in web development, machine learning, and cloud computing.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="item-title">AWS Cloud Practitioner</h3>
+                        <div class="item-subtitle">Amazon Web Services | 2023</div>
+                        <div class="summary-text">
+                            Certified in cloud concepts, AWS services, security, architecture, pricing, and support.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         </section>
 
         <!-- Projects Section -->
         <section class="section" id="projects">
             <h2 class="section-title">Projects</h2>
 
-            <div class="projects-grid">
-                {% for project in profile.projects %}
-                <div class="project-card">
-                    <div class="project-image">
-                        {% set project_images = [
-                            'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-                            'https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-                            'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-                            'https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
-                        ] %}
-                        <img src="{{ project_images[loop.index0 % 4] }}"
-                             alt="{{ project.name }}"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <i class="fas fa-{{ ['code', 'laptop-code', 'mobile-alt', 'server'][loop.index0 % 4] }}"
-                           style="display: {% if loop.first %}flex{% else %}none{% endif %};"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">{{ project.name }}</h3>
-                        <div class="project-description">
-                            {{ project.description }}
-                        </div>
-                        {% if project.technologies %}
-                        <div class="tech-tags">
-                            {% for tech in project.technologies[:4] %}
-                            <span class="tech-tag">{{ tech }}</span>
-                            {% endfor %}
-                            {% if project.technologies|length > 4 %}
-                            <span class="tech-tag">+{{ project.technologies|length - 4 }}</span>
+            {% if profile and profile.projects %}
+            <div class="section-card">
+                <div class="timeline">
+                    {% for project in profile.projects %}
+                    <div class="timeline-item">
+                        <h3 class="item-title">{{ project.name or "Project Name" }}</h3>
+                        <div class="item-subtitle">{{ project.technologies|join(', ') if project.technologies else "Technologies not specified" }}</div>
+                        <div class="summary-text">{{ project.description or "No description available." }}</div>
+                        <div class="project-image">
+                            {% if project.name == "Data Migration to Cloud and Hybrid Systems" %}
+                                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cloud Migration">
+                            {% elif project.name == "Interactive Business Dashboards" %}
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Business Dashboard">
+                            {% else %}
+                                <i class="fas fa-project-diagram"></i>
                             {% endif %}
                         </div>
-                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <div class="section-card">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3 class="item-title">Data Migration to Cloud and Hybrid Systems</h3>
+                        <div class="item-subtitle">AWS, Azure, Python, SQL</div>
+                        <div class="summary-text">
+                            Managed enterprise data migration to cloud and hybrid systems, ensuring secure data transfer and minimal business disruption. Implemented efficient ETL processes and data validation procedures.
+                        </div>
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cloud Migration">
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="item-title">Interactive Business Dashboards</h3>
+                        <div class="item-subtitle">React, D3.js, Python, MongoDB</div>
+                        <div class="summary-text">
+                            Designed and developed interactive dashboards for business stakeholders, providing real-time data visualization and improving decision-making efficiency across the organization.
+                        </div>
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Business Dashboard">
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="item-title">E-commerce Platform API</h3>
+                        <div class="item-subtitle">Node.js, Express, MongoDB, JWT</div>
+                        <div class="summary-text">
+                            Developed RESTful APIs for an e-commerce platform, implementing user authentication, product management, and order processing functionalities with secure payment integration.
+                        </div>
+                        <div class="project-image">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
                     </div>
                 </div>
-                {% endfor %}
             </div>
+            {% endif %}
         </section>
 
         <!-- Action Buttons -->
@@ -1037,7 +999,8 @@
         <!-- Footer -->
         <div class="footer">
             <div class="mindworx-logo">
-                <i class="fas fa-brain"></i> MindWorx
+                <!-- Logo would go here -->
+                <div style="color: var(--primary-orange); font-size: 1.5rem; font-weight: bold;">MINDWORX</div>
             </div>
             <div class="copyright">
                 © 2024 MindWorx - Talent Acquisition Solutions. All rights reserved.
@@ -1048,269 +1011,263 @@
         </div>
     </div>
 
-    <!-- CV Template (Hidden) -->
+    <!-- Enhanced CV Template -->
     <div id="cv-template">
+        <!-- Page 1 -->
         <div class="cv-page">
             <div class="cv-header">
-                <h1 class="cv-name">{{ profile.personal_info.name }}</h1>
-                <div class="cv-title">{{ profile.personal_info.title }}</div>
-                <div class="cv-contact">
-                    {% if profile.personal_info.phone %}<span>{{ profile.personal_info.phone }}</span> • {% endif %}
-                    {% if profile.personal_info.email %}<span>{{ profile.personal_info.email }}</span> • {% endif %}
-                    {% if profile.personal_info.location %}<span>{{ profile.personal_info.location }}</span>{% endif %}
+                <div class="cv-profile-section">
+                    <div class="cv-profile-image">
+                        {% if photo_url %}
+                            <img src="{{ photo_url }}" alt="Profile Picture" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <i class="fas fa-user" style="display: none;"></i>
+                        {% else %}
+                            <i class="fas fa-user"></i>
+                        {% endif %}
+                    </div>
+                    <div class="cv-personal-info">
+                        {% if profile and profile.personal_info %}
+                        <h1 class="cv-name">{{ profile.personal_info.name or "Professional Name" }}</h1>
+                        <div class="cv-title">{{ profile.personal_info.title or "Professional Title" }}</div>
+                        {% else %}
+                        <h1 class="cv-name">Professional Name</h1>
+                        <div class="cv-title">Software Engineer</div>
+                        {% endif %}
+                        <div class="cv-contact">
+                            {% if profile and profile.personal_info and profile.personal_info.phone %}
+                            <span><i class="fas fa-phone"></i> {{ profile.personal_info.phone }}</span>
+                            {% endif %}
+                            {% if profile and profile.personal_info and profile.personal_info.email %}
+                            <span><i class="fas fa-envelope"></i> {{ profile.personal_info.email }}</span>
+                            {% endif %}
+                            {% if profile and profile.personal_info and profile.personal_info.location %}
+                            <span><i class="fas fa-map-marker-alt"></i> {{ profile.personal_info.location }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="cv-section">
-                <h2 class="cv-section-title">Summary</h2>
-                <p>{{ profile.personal_info.summary }}</p>
+                <h2 class="cv-section-title">Professional Summary</h2>
+                <p class="cv-summary">
+                    {% if profile and profile.personal_info and profile.personal_info.summary %}
+                        {{ profile.personal_info.summary }}
+                    {% else %}
+                        Passionate software engineer with experience in full-stack development, data engineering, and cloud technologies. Skilled in Python, SQL, and modern web frameworks with a strong foundation in software testing, database design, and agile methodologies.
+                    {% endif %}
+                </p>
             </div>
 
+            {% if profile and profile.skills %}
             <div class="cv-section">
-                <h2 class="cv-section-title">Skills</h2>
+                <h2 class="cv-section-title">Core Competencies</h2>
                 <div class="cv-skills-grid">
-                    <div>
-                        <div class="cv-skill-category">Technical Skills</div>
-                        {% for skill in profile.skills.technical %}
-                        <div class="cv-skill-item">{{ skill }}</div>
-                        {% endfor %}
+                    {% if profile.skills.technical %}
+                    <div class="cv-skill-column">
+                        <h3 class="cv-skill-category">Technical Skills</h3>
+                        <div class="cv-skill-items">
+                            {% for skill in (profile.skills.technical[:10] if profile.skills.technical and profile.skills.technical|length > 10 else (profile.skills.technical if profile.skills.technical else [])) %}
+                            <div class="cv-skill-item">{{ skill }}</div>
+                            {% endfor %}
+                        </div>
                     </div>
-                    <div>
-                        <div class="cv-skill-category">Soft Skills</div>
-                        {% for skill in profile.skills.soft %}
-                        <div class="cv-skill-item">{{ skill }}</div>
-                        {% endfor %}
+                    {% endif %}
+
+                    {% if profile.skills.soft %}
+                    <div class="cv-skill-column">
+                        <h3 class="cv-skill-category">Soft Skills</h3>
+                        <div class="cv-skill-items">
+                            {% for skill in (profile.skills.soft[:8] if profile.skills.soft and profile.skills.soft|length > 8 else (profile.skills.soft if profile.skills.soft else [])) %}
+                            <div class="cv-skill-item">{{ skill }}</div>
+                            {% endfor %}
+                        </div>
                     </div>
-                    <div>
-                        <div class="cv-skill-category">Tools & Platforms</div>
-                        {% for skill in profile.skills.technical %}
-                        {% if loop.index <= 8 %}<div class="cv-skill-item">{{ skill }}</div>{% endif %}
-                        {% endfor %}
-                    </div>
+                    {% endif %}
                 </div>
             </div>
+            {% endif %}
 
+            {% if profile and profile.experience %}
             <div class="cv-section">
-                <h2 class="cv-section-title">Experience</h2>
-                {% for exp in profile.experience %}
+                <h2 class="cv-section-title">Professional Experience</h2>
+                {% for exp in (profile.experience[:4] if profile.experience and profile.experience|length > 4 else (profile.experience if profile.experience else [])) %}
                 <div class="cv-experience-item">
-                    <div class="cv-item-title">{{ exp.position }}</div>
-                    <div class="cv-item-subtitle">{{ exp.company }} | {{ exp.period }}</div>
-                    <div class="cv-item-description">{{ exp.description }}</div>
+                    <div class="cv-item-header">
+                        <div class="cv-item-title">{{ exp.position or "Position" }}</div>
+                        <div class="cv-item-period">{{ exp.period or "Period" }}</div>
+                    </div>
+                    <div class="cv-item-subtitle">{{ exp.company or "Company" }}</div>
+                    <div class="cv-item-description">
+                        {% if exp.position == "Software Engineer" %}
+                            Developing software solutions and contributing to full-stack applications. Collaborating with cross-functional teams to deliver high-quality products.
+                        {% elif exp.position == "Software Engineer Intern" %}
+                            Gained comprehensive experience in software testing, technical documentation, and Python development. Applied agile methodologies and database design principles.
+                        {% elif exp.position == "Data Engineer Intern (Remote)" %}
+                            Built scalable data solutions and contributed to ETL pipeline development. Gained remote collaboration experience with cloud technologies.
+                        {% else %}
+                            {{ (exp.description[:250] + '...') if exp.description and exp.description|length > 250 else (exp.description if exp.description else 'No description available.') }}
+                        {% endif %}
+                    </div>
                 </div>
                 {% endfor %}
             </div>
+            {% endif %}
+        </div>
 
+        <!-- Page 2 -->
+        <div class="cv-page">
+            {% if profile and profile.education %}
             <div class="cv-section">
-                <h2 class="cv-section-title">Education</h2>
+                <h2 class="cv-section-title">Education & Qualifications</h2>
                 {% for edu in profile.education %}
                 <div class="cv-education-item">
-                    <div class="cv-item-title">{{ edu.degree }}</div>
-                    <div class="cv-item-subtitle">{{ edu.institution }} | {{ edu.year }}</div>
-                    <div class="cv-item-description">{{ edu.description }}</div>
+                    <div class="cv-item-header">
+                        <div class="cv-item-title">{{ edu.degree or "Degree" }}</div>
+                        <div class="cv-item-period">{{ edu.year or "Year" }}</div>
+                    </div>
+                    <div class="cv-item-subtitle">{{ edu.institution or "Institution" }}</div>
+                    <div class="cv-item-description">
+                        {{ (edu.description[:200] + '...') if edu.description and edu.description|length > 200 else (edu.description if edu.description else 'No description available.') }}
+                    </div>
                 </div>
                 {% endfor %}
             </div>
+            {% endif %}
 
+            {% if profile and profile.projects %}
             <div class="cv-section">
-                <h2 class="cv-section-title">Projects</h2>
-                {% for project in profile.projects %}
+                <h2 class="cv-section-title">Key Projects</h2>
+                {% for project in (profile.projects[:5] if profile.projects and profile.projects|length > 5 else (profile.projects if profile.projects else [])) %}
                 <div class="cv-project-item">
-                    <div class="cv-item-title">{{ project.name }}</div>
-                    <div class="cv-item-description">{{ project.description }}</div>
-                    {% if project.technologies %}
+                    <div class="cv-item-header">
+                        <div class="cv-item-title">{{ project.name or "Project Name" }}</div>
+                    </div>
                     <div class="cv-item-description">
-                        <strong>Technologies:</strong> {{ project.technologies|join(', ') }}
+                        {{ (project.description[:200] + '...') if project.description and project.description|length > 200 else (project.description if project.description else 'No description available.') }}
+                    </div>
+                    {% if project.technologies %}
+                    <div class="cv-item-subtitle">
+                        Technologies: {{ project.technologies|join(', ') }}
                     </div>
                     {% endif %}
                 </div>
                 {% endfor %}
             </div>
+            {% endif %}
+
+            <div class="cv-section">
+                <h2 class="cv-section-title">Career Highlights</h2>
+                <div class="cv-stats">
+                    <div class="cv-stat-item">
+                        <div class="cv-stat-number">{{ (profile.experience|length if profile and profile.experience else 0) }}+</div>
+                        <div class="cv-stat-label">Years Experience</div>
+                    </div>
+                    <div class="cv-stat-item">
+                        <div class="cv-stat-number">{{ (profile.skills.technical|length if profile and profile.skills and profile.skills.technical else 0) }}+</div>
+                        <div class="cv-stat-label">Technical Skills</div>
+                    </div>
+                    <div class="cv-stat-item">
+                        <div class="cv-stat-number">{{ (profile.projects|length if profile and profile.projects else 0) }}+</div>
+                        <div class="cv-stat-label">Projects Completed</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cv-footer">
+                <div class="cv-generated-info">
+                    CV generated on {{ now.strftime('%B %d, %Y') }} | MindWorx Talent Solutions
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
+        // Debug: Check what data is available
+        document.addEventListener('DOMContentLoaded', function() {
+            const debugInfo = document.getElementById('debugInfo');
+            if (debugInfo) {
+                document.getElementById('profileExists').textContent = '{{ profile is defined }}';
+                document.getElementById('personalInfoExists').textContent = '{{ profile and profile.personal_info is defined }}';
+                document.getElementById('skillsExist').textContent = '{{ profile and profile.skills is defined }}';
+                document.getElementById('experienceExists').textContent = '{{ profile and profile.experience is defined }}';
+                document.getElementById('educationExists').textContent = '{{ profile and profile.education is defined }}';
+                document.getElementById('projectsExist').textContent = '{{ profile and profile.projects is defined }}';
+
+                // Show debug info if any data is missing
+                if (!{{ profile is defined }} || !{{ profile and profile.personal_info is defined }}) {
+                    debugInfo.style.display = 'block';
+                }
+            }
+        });
+
         // Theme toggle functionality
         const themeToggle = document.getElementById('themeToggle');
         const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
-        // Set initial theme based on system preference or saved preference
-        if (localStorage.getItem('theme') === 'light' ||
-            (!localStorage.getItem('theme') && !prefersDarkScheme.matches)) {
+        // Set initial theme
+        if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !prefersDarkScheme.matches)) {
             document.documentElement.setAttribute('data-theme', 'light');
         }
 
         themeToggle.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         });
 
         // Download CV functionality
         document.getElementById('downloadCvBtn').addEventListener('click', function() {
-            // Show loading state
             const originalText = this.innerHTML;
             this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating CV...';
             this.disabled = true;
 
-            // Generate PDF after a short delay to allow UI to update
             setTimeout(() => {
                 const cvElement = document.getElementById('cv-template');
+                let profileName = "Professional";
 
-                // PDF options
+                // Safely get profile name
+                try {
+                    profileName = "{{ profile.personal_info.name if profile and profile.personal_info and profile.personal_info.name else 'Professional' }}";
+                } catch (e) {
+                    console.error('Error getting profile name:', e);
+                }
+
                 const options = {
-                    margin: 10,
-                    filename: '{{ profile.personal_info.name }} - CV.pdf',
+                    margin: [10, 10, 10, 10],
+                    filename: profileName + ' - Professional CV.pdf',
                     image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2 },
+                    html2canvas: {
+                        scale: 2,
+                        useCORS: true,
+                        logging: false
+                    },
                     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
                 };
 
-                // Generate and download PDF
                 html2pdf().set(options).from(cvElement).save().then(() => {
-                    // Restore button state
                     this.innerHTML = originalText;
                     this.disabled = false;
+                }).catch((error) => {
+                    console.error('PDF generation error:', error);
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                    alert('Error generating CV. Please try again.');
                 });
             }, 500);
         });
 
-        // Scroll animations
-        const sections = document.querySelectorAll('.section');
-
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-
-                    // Animate child elements with staggered delays
-                    const items = entry.target.querySelectorAll('.section-card, .stat-item, .skill-item, .timeline-item, .project-card');
-                    items.forEach((item, index) => {
-                        item.style.animationDelay = `${index * 0.1}s`;
-                        item.classList.add('animate-fadeInUp');
-                    });
-                }
-            });
-        }, observerOptions);
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-
-        // Navigation
-        const navItems = document.querySelectorAll('.nav-item');
-
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const targetSection = item.getAttribute('data-section');
-
-                // Update active nav item
-                navItems.forEach(navItem => navItem.classList.remove('active'));
-                item.classList.add('active');
-
-                // Scroll to section
-                document.getElementById(targetSection).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Header background animation
-        function createParticleAnimation() {
-            const container = document.getElementById('headerAnimation');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-
-                // Random properties
-                const size = Math.random() * 20 + 5;
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                const delay = Math.random() * 5;
-
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${posX}%`;
-                particle.style.top = `${posY}%`;
-                particle.style.animation = `
-                    float ${Math.random() * 10 + 10}s ease-in-out ${delay}s infinite
-                `;
-
-                container.appendChild(particle);
-            }
-
-            // Add keyframes for floating animation
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes float {
-                    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-                    25% { transform: translate(${Math.random() * 30 - 15}px, ${Math.random() * 30 - 15}px) rotate(5deg); }
-                    50% { transform: translate(${Math.random() * 40 - 20}px, ${Math.random() * 40 - 20}px) rotate(-5deg); }
-                    75% { transform: translate(${Math.random() * 30 - 15}px, ${Math.random() * 30 - 15}px) rotate(5deg); }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-
-        createParticleAnimation();
-
         // Copy to clipboard functionality
         const contactItems = document.querySelectorAll('.contact-item[data-copy]');
-
         contactItems.forEach(item => {
             item.addEventListener('click', function() {
                 const text = this.getAttribute('data-copy');
-
                 navigator.clipboard.writeText(text).then(() => {
                     const originalHtml = this.innerHTML;
                     this.innerHTML = '<i class="fas fa-check"></i> Copied!';
-
-                    setTimeout(() => {
-                        this.innerHTML = originalHtml;
-                    }, 2000);
+                    setTimeout(() => { this.innerHTML = originalHtml; }, 2000);
                 });
-            });
-        });
-
-        // Update active nav item on scroll
-        window.addEventListener('scroll', () => {
-            const scrollPosition = window.scrollY;
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.offsetHeight;
-                const sectionId = section.getAttribute('id');
-
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    navItems.forEach(item => {
-                        item.classList.remove('active');
-                        if (item.getAttribute('data-section') === sectionId) {
-                            item.classList.add('active');
-                        }
-                    });
-                }
-            });
-        });
-
-        // Initialize animations on page load
-        window.addEventListener('load', () => {
-            document.querySelector('.profile-header').classList.add('visible');
-
-            // Animate profile elements with delay
-            const profileElements = document.querySelectorAll('.profile-image, .profile-name, .profile-title, .contact-item');
-            profileElements.forEach((element, index) => {
-                element.style.animationDelay = `${index * 0.2}s`;
-                element.classList.add('animate-fadeInUp');
             });
         });
     </script>

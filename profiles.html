@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generated Profiles</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .profile-card { border: 1px solid #ddd; padding: 20px; margin: 10px 0; border-radius: 8px; }
+        .active { border-left: 4px solid #4CAF50; background: #f9fff9; }
+        .btn { padding: 8px 16px; margin: 5px; text-decoration: none; border-radius: 4px; }
+        .btn-primary { background: #007bff; color: white; }
+        .btn-success { background: #28a745; color: white; }
+    </style>
+</head>
+<body>
+    <h1><i class="fas fa-users"></i> Generated Profiles</h1>
+    <a href="/" class="btn btn-primary"><i class="fas fa-upload"></i> Upload New</a>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {% for profile in profiles %}
+        <div class="profile-card {% if profile.is_active %}active{% endif %}">
+            <h3>{{ profile.profile_name }}</h3>
+            <p><strong>Created by:</strong> {{ profile.created_by }}</p>
+            <p><strong>Created:</strong> {{ profile.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+            <p><strong>Status:</strong> {% if profile.is_active %}✅ Active{% else %}❌ Inactive{% endif %}</p>
+
+            <a href="/profile/{{ profile.id }}" class="btn btn-primary"><i class="fas fa-eye"></i> View</a>
+            {% if not profile.is_active %}
+                <form action="/activate_profile/{{ profile.id }}" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Activate</button>
+                </form>
+            {% endif %}
+        </div>
+    {% else %}
+        <p>No profiles generated yet. <a href="/">Upload your first profile!</a></p>
+    {% endfor %}
+</body>
+</html>
