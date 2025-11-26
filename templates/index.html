@@ -8,34 +8,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Our custom styles -->
-    <link rel="stylesheet" href="style.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #3498db;
-            --secondary: #2c3e50;
+            --primary: #F28F3B; /* Mindworx Orange */
+            --secondary: #59585B; /* Mindworx Grey */
             --success: #2ecc71;
             --warning: #f39c12;
             --danger: #e74c3c;
-            --light: #ecf0f1;
+            --light: #f5f5f5;
             --dark: #34495e;
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f5f7fa;
             color: #333;
             line-height: 1.6;
         }
-        
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
-        
+
         header {
             background: linear-gradient(135deg, var(--secondary), var(--primary));
             color: white;
@@ -43,20 +41,23 @@
             border-radius: 8px;
             margin-bottom: 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        
+
         header p {
             margin: 0;
             font-size: 1.2rem;
             font-weight: 600;
         }
-        
+
         .mindworx-logo-img {
             height: 48px;
             margin-right: 15px;
             vertical-align: middle;
         }
-        
+
         .sidebar {
             background-color: white;
             border-radius: 8px;
@@ -64,17 +65,17 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             height: fit-content;
         }
-        
+
         .sidebar ul {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-        
+
         .sidebar li {
             margin-bottom: 10px;
         }
-        
+
         .sidebar a {
             display: block;
             padding: 12px 15px;
@@ -83,23 +84,23 @@
             border-radius: 5px;
             transition: all 0.3s ease;
         }
-        
+
         .sidebar a:hover {
             background-color: var(--light);
             color: var(--primary);
         }
-        
+
         .sidebar a.active {
             background-color: var(--primary);
             color: white;
         }
-        
+
         .sidebar a i {
             margin-right: 10px;
             width: 20px;
             text-align: center;
         }
-        
+
         .content-section {
             background-color: white;
             border-radius: 8px;
@@ -107,7 +108,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             margin-bottom: 20px;
         }
-        
+
         .card {
             background-color: white;
             border-radius: 8px;
@@ -116,61 +117,61 @@
             height: 100%;
             border-left: 4px solid var(--primary);
         }
-        
+
         .metric-card {
             text-align: center;
             padding: 25px 15px;
         }
-        
+
         .metric-value {
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--primary);
             margin: 10px 0;
         }
-        
+
         .metric-label {
             font-size: 0.9rem;
             color: #666;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        
+
         .metric-change {
             font-size: 0.8rem;
             margin-top: 5px;
         }
-        
+
         .positive {
             color: var(--success);
         }
-        
+
         .negative {
             color: var(--danger);
         }
-        
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
         }
-        
+
         th {
             background-color: var(--light);
             font-weight: 600;
             text-align: left;
             padding: 12px 15px;
         }
-        
+
         td {
             padding: 12px 15px;
             border-bottom: 1px solid #eee;
         }
-        
+
         tr:hover {
             background-color: #f9f9f9;
         }
-        
+
         .status-badge {
             display: inline-block;
             padding: 4px 10px;
@@ -178,42 +179,42 @@
             font-size: 0.8rem;
             font-weight: 600;
         }
-        
+
         .status-pending {
             background-color: #fff3cd;
             color: #856404;
         }
-        
+
         .status-approved {
             background-color: #d1ecf1;
             color: #0c5460;
         }
-        
+
         .status-complete {
             background-color: #d4edda;
             color: #155724;
         }
-        
+
         .status-incomplete {
             background-color: #f8d7da;
             color: #721c24;
         }
-        
+
         .confidence-high {
             color: var(--success);
             font-weight: 600;
         }
-        
+
         .confidence-medium {
             color: var(--warning);
             font-weight: 600;
         }
-        
+
         .confidence-low {
             color: var(--danger);
             font-weight: 600;
         }
-        
+
         .action-btn {
             padding: 6px 12px;
             margin-right: 5px;
@@ -222,64 +223,45 @@
             cursor: pointer;
             font-size: 0.85rem;
         }
-        
+
         .btn-view {
             background-color: var(--primary);
             color: white;
         }
-        
+
         .btn-edit {
             background-color: var(--warning);
             color: white;
         }
-        
+
         .btn-approve {
             background-color: var(--success);
             color: white;
         }
-        
+
         .alert {
             padding: 15px;
             border-radius: 5px;
             margin-bottom: 20px;
         }
-        
+
         .alert-info {
             background-color: #d1ecf1;
             color: #0c5460;
             border-left: 4px solid var(--primary);
         }
-        
-        .alert-warning {
-            background-color: #fff3cd;
-            color: #856404;
-            border-left: 4px solid var(--warning);
-        }
-        
+
         .filter-section {
             background-color: var(--light);
             padding: 15px;
             border-radius: 5px;
             margin-bottom: 20px;
         }
-        
+
         .filter-group {
             margin-bottom: 10px;
         }
-        
-        .progress-bar {
-            height: 10px;
-            background-color: #e0e0e0;
-            border-radius: 5px;
-            margin-top: 5px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background-color: var(--success);
-        }
-        
+
         .skill-tag {
             display: inline-block;
             background-color: #e0e7ff;
@@ -289,13 +271,13 @@
             font-size: 0.8rem;
             margin: 2px 5px 2px 0;
         }
-        
+
         .word-cloud {
             text-align: center;
             padding: 20px;
             min-height: 200px;
         }
-        
+
         .word-cloud span {
             display: inline-block;
             margin: 5px;
@@ -303,98 +285,193 @@
             border-radius: 4px;
             background-color: #e0e7ff;
         }
-        
+
         .word-1 { font-size: 1.2rem; color: #1e40af; }
         .word-2 { font-size: 1.5rem; color: #1d4ed8; }
         .word-3 { font-size: 1.8rem; color: #3b82f6; }
         .word-4 { font-size: 2.1rem; color: #60a5fa; }
         .word-5 { font-size: 2.4rem; color: #93c5fd; }
-        
+
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
         }
-        
+
         .comparison-table th, .comparison-table td {
             border: 1px solid #ddd;
             padding: 10px;
             text-align: center;
         }
-        
+
         .comparison-table th {
             background-color: var(--light);
         }
-        
+
         .match-score {
             font-weight: bold;
             font-size: 1.2rem;
         }
-        
+
         .match-high { color: var(--success); }
         .match-medium { color: var(--warning); }
         .match-low { color: var(--danger); }
-        
+
         .chart-container {
             position: relative;
             height: 300px;
             width: 100%;
         }
-        
+
         .quick-actions {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-top: 15px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
         }
-        
-        .quick-action-btn {
-            flex: 1;
-            min-width: 150px;
-            padding: 12px;
-            text-align: center;
-            background-color: var(--light);
-            border-radius: 5px;
+
+        .btn {
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
+            display: inline-flex;
+            gap: 10px;
+            align-items: center;
+            transition: background-color 0.3s
         }
-        
-        .quick-action-btn:hover {
-            background-color: var(--primary);
-            color: white;
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
         }
-        
-        .quick-action-btn i {
-            display: block;
-            font-size: 1.5rem;
-            margin-bottom: 8px;
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
         }
-        
-        hr {
-            border: 0;
-            height: 1px;
-            background: linear-gradient(to right, transparent, #ddd, transparent);
-            margin: 25px 0;
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: #fff;
         }
-        
+
+        .download-links {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem
+        }
+
+        @media (max-width: 900px) {
+            .profile-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center
+            }
+            .profile-image {
+                width: 150px;
+                height: 150px
+            }
+        }
+        .achievement-list {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        .achievement-list li {
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        .tech-tag {
+            background: var(--card-bg);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            border: 1px solid var(--card-border);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .modal-content.loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* Status badge variants */
+        .status-pending { background-color: #fff3cd; color: #856404; }
+        .status-approved { background-color: #d1ecf1; color: #0c5460; }
+        .status-complete { background-color: #d4edda; color: #155724; }
+        .status-incomplete { background-color: #f8d7da; color: #721c24; }
+
+        /* PowerPoint button specific style */
+        .action-btn.btn-edit:hover {
+            background-color: #e67e22;
+        }
+
         @media (max-width: 768px) {
             .sidebar {
                 margin-bottom: 20px;
             }
-            
+
             .quick-actions {
                 flex-direction: column;
+            }
+
+            .modal-content {
+                padding: 20px;
+                width: 95%;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header class="row">
-            <div class="column">
-                <img src="logo.png" alt="Mindworx Logo" class="mindworx-logo-img">
-                <p>Admin Dashboard</p>
+        <header>
+            <div style="display: flex; align-items: center;">
+                <img src="/static/mindworx_logo.png" alt="Mindworx Logo" class="mindworx-logo-img" onerror="this.style.display='none'">
+                <p>Mindworx Academy - Admin Dashboard</p>
             </div>
-            <div class="column">
+            <div>
                 <button class="button button-outline" id="logoutBtn" style="float: right;">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
@@ -423,9 +500,6 @@
                     <li><a href="#" class="nav-link" data-section="reporting">
                         <i class="fas fa-chart-pie"></i>Reporting & Analytics
                     </a></li>
-                    <li><a href="#" class="nav-link" data-section="employer">
-                        <i class="fas fa-building"></i>Employer Insights
-                    </a></li>
                 </ul>
             </div>
 
@@ -434,42 +508,42 @@
                 <!-- Dashboard Overview Section -->
                 <section id="dashboard-section" class="content-section">
                     <h2><i class="fas fa-tachometer-alt"></i> Dashboard Overview</h2>
-                    
+
                     <div class="row">
                         <div class="column column-25">
                             <div class="card metric-card">
                                 <i class="fas fa-user-graduate fa-2x" style="color: var(--primary);"></i>
-                                <div class="metric-value">247</div>
+                                <div class="metric-value" id="totalProfiles">0</div>
                                 <div class="metric-label">Total Student Profiles</div>
-                                <div class="metric-change positive">+12% from last month</div>
+                                <div class="metric-change positive" id="profileChange">Loading...</div>
                             </div>
                         </div>
                         <div class="column column-25">
                             <div class="card metric-card">
                                 <i class="fas fa-check-circle fa-2x" style="color: var(--success);"></i>
-                                <div class="metric-value">78%</div>
+                                <div class="metric-value" id="completionRate">0%</div>
                                 <div class="metric-label">Profile Completion Rate</div>
-                                <div class="metric-change positive">+5% from last month</div>
+                                <div class="metric-change positive" id="completionChange">Loading...</div>
                             </div>
                         </div>
                         <div class="column column-25">
                             <div class="card metric-card">
                                 <i class="fas fa-briefcase fa-2x" style="color: var(--warning);"></i>
-                                <div class="metric-value">64%</div>
+                                <div class="metric-value" id="placementReadiness">0%</div>
                                 <div class="metric-label">Placement Readiness</div>
-                                <div class="metric-change positive">+8% from last month</div>
+                                <div class="metric-change positive" id="placementChange">Loading...</div>
                             </div>
                         </div>
                         <div class="column column-25">
                             <div class="card metric-card">
                                 <i class="fas fa-flag fa-2x" style="color: var(--danger);"></i>
-                                <div class="metric-value">23</div>
+                                <div class="metric-value" id="pendingReviews">0</div>
                                 <div class="metric-label">Pending Reviews</div>
-                                <div class="metric-change negative">+3 from yesterday</div>
+                                <div class="metric-change negative" id="reviewChange">Loading...</div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="column column-50">
                             <div class="card">
@@ -483,16 +557,12 @@
                             <div class="card">
                                 <h4><i class="fas fa-list-alt"></i> Recent Activity</h4>
                                 <ul id="recentActivityList">
-                                    <li><strong>John Smith</strong> updated his profile (2 hours ago)</li>
-                                    <li><strong>Sarah Johnson</strong> completed her skills assessment (5 hours ago)</li>
-                                    <li><strong>Michael Brown</strong> was approved by Admin (yesterday)</li>
-                                    <li><strong>Emily Davis</strong> added new project experience (2 days ago)</li>
-                                    <li><strong>David Wilson</strong> requested profile review (2 days ago)</li>
+                                    <li>Loading recent activity...</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="column">
                             <div class="card">
@@ -523,7 +593,7 @@
                 <!-- Candidate Profiles Section (Initially Hidden) -->
                 <section id="profiles-section" class="content-section" style="display: none;">
                     <h2><i class="fas fa-user-graduate"></i> Candidate Profiles</h2>
-                    
+
                     <div class="filter-section">
                         <div class="row">
                             <div class="column column-50">
@@ -540,85 +610,41 @@
                             </div>
                             <div class="column column-25">
                                 <button class="button" id="applyFiltersBtn">Apply Filters</button>
-                                <button class="button button-outline" id="bulkActionsBtn">Bulk Actions</button>
+                                <button class="button button-outline" id="resetFiltersBtn">Reset</button>
                             </div>
                         </div>
                     </div>
-                    
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Student ID</th>
-                                <th>Name</th>
-                                <th>Program</th>
-                                <th>Status</th>
-                                <th>Last Updated</th>
-                                <th>AI Confidence</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="profilesTableBody">
-                            <tr>
-                                <td>MW2023001</td>
-                                <td>John Smith</td>
-                                <td>Data Science</td>
-                                <td><span class="status-badge status-approved">Approved</span></td>
-                                <td>2023-10-20</td>
-                                <td class="confidence-high">92%</td>
-                                <td>
-                                    <button class="action-btn btn-view">View</button>
-                                    <button class="action-btn btn-edit">Edit</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>MW2023002</td>
-                                <td>Sarah Johnson</td>
-                                <td>Business Analytics</td>
-                                <td><span class="status-badge status-pending">Pending</span></td>
-                                <td>2023-10-22</td>
-                                <td class="confidence-medium">76%</td>
-                                <td>
-                                    <button class="action-btn btn-view">View</button>
-                                    <button class="action-btn btn-edit">Edit</button>
-                                    <button class="action-btn btn-approve">Approve</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>MW2023003</td>
-                                <td>Michael Brown</td>
-                                <td>Software Engineering</td>
-                                <td><span class="status-badge status-complete">Complete</span></td>
-                                <td>2023-10-18</td>
-                                <td class="confidence-high">95%</td>
-                                <td>
-                                    <button class="action-btn btn-view">View</button>
-                                    <button class="action-btn btn-edit">Edit</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>MW2023004</td>
-                                <td>Emily Davis</td>
-                                <td>UX Design</td>
-                                <td><span class="status-badge status-incomplete">Incomplete</span></td>
-                                <td>2023-10-15</td>
-                                <td class="confidence-low">45%</td>
-                                <td>
-                                    <button class="action-btn btn-view">View</button>
-                                    <button class="action-btn btn-edit">Edit</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                    <div id="profilesTableContainer">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Name</th>
+                                    <th>Program</th>
+                                    <th>Status</th>
+                                    <th>Last Updated</th>
+                                    <th>AI Confidence</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="profilesTableBody">
+                                <tr>
+                                    <td colspan="7" style="text-align: center;">Loading profiles...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
 
                 <!-- Profile Review Queue Section (Initially Hidden) -->
                 <section id="review-section" class="content-section" style="display: none;">
                     <h2><i class="fas fa-clipboard-check"></i> Profile Review Queue</h2>
-                    
+
                     <div class="alert alert-info">
                         <strong><i class="fas fa-info-circle"></i> AI Flagged Profiles:</strong> These profiles require human review before publication to employers.
                     </div>
-                    
+
                     <div class="filter-section">
                         <div class="row">
                             <div class="column column-50">
@@ -640,49 +666,10 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div id="reviewQueue">
-                        <div class="card" style="margin-bottom: 15px;">
-                            <div class="row">
-                                <div class="column column-70">
-                                    <h4>Sarah Johnson <span class="status-badge status-pending">Pending Review</span></h4>
-                                    <p><strong>Program:</strong> Business Analytics</p>
-                                    <p><strong>AI Confidence:</strong> <span class="confidence-medium">76%</span></p>
-                                    <p><strong>Flagged Issues:</strong> Inconsistent work history dates, Missing project descriptions</p>
-                                    <div class="skill-tags">
-                                        <span class="skill-tag">Data Analysis</span>
-                                        <span class="skill-tag">SQL</span>
-                                        <span class="skill-tag">Tableau</span>
-                                        <span class="skill-tag">Python</span>
-                                    </div>
-                                </div>
-                                <div class="column column-30" style="text-align: right;">
-                                    <button class="button btn-approve">Approve</button>
-                                    <button class="button btn-edit">Edit & Review</button>
-                                    <button class="button button-outline">Request Info</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card" style="margin-bottom: 15px;">
-                            <div class="row">
-                                <div class="column column-70">
-                                    <h4>David Wilson <span class="status-badge status-pending">Pending Review</span></h4>
-                                    <p><strong>Program:</strong> Digital Marketing</p>
-                                    <p><strong>AI Confidence:</strong> <span class="confidence-low">45%</span></p>
-                                    <p><strong>Flagged Issues:</strong> Skills don't match experience, Low completion rate</p>
-                                    <div class="skill-tags">
-                                        <span class="skill-tag">SEO</span>
-                                        <span class="skill-tag">Content Marketing</span>
-                                        <span class="skill-tag">Social Media</span>
-                                    </div>
-                                </div>
-                                <div class="column column-30" style="text-align: right;">
-                                    <button class="button btn-approve">Approve</button>
-                                    <button class="button btn-edit">Edit & Review</button>
-                                    <button class="button button-outline">Request Info</button>
-                                </div>
-                            </div>
+                        <div class="card">
+                            <p>Loading review queue...</p>
                         </div>
                     </div>
                 </section>
@@ -690,47 +677,26 @@
                 <!-- Skills Analytics Section (Initially Hidden) -->
                 <section id="skills-section" class="content-section" style="display: none;">
                     <h2><i class="fas fa-chart-bar"></i> Skills Analytics</h2>
-                    
+
                     <div class="row">
                         <div class="column column-50">
                             <div class="card">
                                 <h4><i class="fas fa-cloud"></i> Top Skills Inventory</h4>
-                                <div class="word-cloud">
-                                    <span class="word-5">Python</span>
-                                    <span class="word-4">Data Analysis</span>
-                                    <span class="word-3">JavaScript</span>
-                                    <span class="word-4">SQL</span>
-                                    <span class="word-2">Machine Learning</span>
-                                    <span class="word-3">React</span>
-                                    <span class="word-1">Tableau</span>
-                                    <span class="word-2">Communication</span>
-                                    <span class="word-1">Project Management</span>
-                                    <span class="word-3">Problem Solving</span>
+                                <div class="word-cloud" id="skillsWordCloud">
+                                    <span>Loading skills...</span>
                                 </div>
                             </div>
                         </div>
                         <div class="column column-50">
                             <div class="card">
-                                <h4><i class="fas fa-chart-pie"></i> Skills Distribution</h4>
+                                <h4><i class="fas fa-chart-pie"></i> Program Distribution</h4>
                                 <div class="chart-container">
-                                    <canvas id="skillsDistributionChart"></canvas>
+                                    <canvas id="programDistributionChart"></canvas>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="row">
-                        <div class="column">
-                            <div class="card">
-                                <h4><i class="fas fa-search-minus"></i> Skills Gap Analysis</h4>
-                                <p>Comparing student skills with current market demands</p>
-                                <div class="chart-container">
-                                    <canvas id="skillsGapChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
+
                     <div class="row">
                         <div class="column">
                             <div class="card">
@@ -740,11 +706,11 @@
                                         <textarea id="jobDescription" placeholder="Paste job description here..." rows="5" style="width: 100%; padding: 10px;"></textarea>
                                     </div>
                                     <div class="column column-30">
-                                        <button class="button" style="width: 100%; margin-top: 10px;">Match Candidates</button>
-                                        <button class="button button-outline" style="width: 100%; margin-top: 10px;">Save as Template</button>
+                                        <button class="button" style="width: 100%; margin-top: 10px;" onclick="matchCandidates()">Match Candidates</button>
+                                        <button class="button button-outline" style="width: 100%; margin-top: 10px;" onclick="saveJobTemplate()">Save as Template</button>
                                     </div>
                                 </div>
-                                
+
                                 <div id="matchingResults" style="margin-top: 20px; display: none;">
                                     <h5>Top Matching Candidates:</h5>
                                     <table class="comparison-table">
@@ -757,28 +723,7 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>John Smith</td>
-                                                <td class="match-score match-high">94%</td>
-                                                <td>Python, SQL, Machine Learning</td>
-                                                <td>Data Science</td>
-                                                <td><button class="button button-small">View Profile</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Michael Brown</td>
-                                                <td class="match-score match-high">89%</td>
-                                                <td>JavaScript, React, Node.js</td>
-                                                <td>Software Engineering</td>
-                                                <td><button class="button button-small">View Profile</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sarah Johnson</td>
-                                                <td class="match-score match-medium">76%</td>
-                                                <td>Data Analysis, Tableau, SQL</td>
-                                                <td>Business Analytics</td>
-                                                <td><button class="button button-small">View Profile</button></td>
-                                            </tr>
+                                        <tbody id="matchingResultsBody">
                                         </tbody>
                                     </table>
                                 </div>
@@ -790,260 +735,151 @@
                 <!-- Search & Filters Section (Initially Hidden) -->
                 <section id="search-section" class="content-section" style="display: none;">
                     <h2><i class="fas fa-search"></i> Advanced Search & Filters</h2>
-                    <p>This section provides advanced search capabilities for finding specific candidates.</p>
-                    
+
                     <div class="filter-section">
                         <div class="row">
                             <div class="column column-25">
-                                <label>Skills</label>
-                                <input type="text" placeholder="e.g., Python, SQL">
-                            </div>
-                            <div class="column column-25">
                                 <label>Program</label>
-                                <select>
+                                <select id="programFilter">
                                     <option value="">All Programs</option>
-                                    <option value="data-science">Data Science</option>
-                                    <option value="business-analytics">Business Analytics</option>
-                                    <option value="software-engineering">Software Engineering</option>
-                                    <option value="ux-design">UX Design</option>
-                                    <option value="digital-marketing">Digital Marketing</option>
+                                    <option value="Software Engineering">Software Engineering</option>
+                                    <option value="Data Science">Data Science</option>
+                                    <option value="UX Design">UX Design</option>
+                                    <option value="Cybersecurity">Cybersecurity</option>
+                                    <option value="AI & Machine Learning">AI & Machine Learning</option>
                                 </select>
                             </div>
                             <div class="column column-25">
-                                <label>Graduation Year</label>
-                                <select>
-                                    <option value="">Any</option>
-                                    <option value="2023">2023</option>
-                                    <option value="2024">2024</option>
-                                    <option value="2025">2025</option>
-                                </select>
-                            </div>
-                            <div class="column column-25">
-                                <label>GPA Range</label>
-                                <select>
-                                    <option value="">Any</option>
-                                    <option value="3.5-4.0">3.5 - 4.0</option>
-                                    <option value="3.0-3.5">3.0 - 3.5</option>
-                                    <option value="2.5-3.0">2.5 - 3.0</option>
-                                    <option value="2.0-2.5">2.0 - 2.5</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="column column-25">
-                                <label>Work Style</label>
-                                <select>
-                                    <option value="">Any</option>
-                                    <option value="analytical">Analytical</option>
-                                    <option value="collaborative">Collaborative</option>
-                                    <option value="independent">Independent</option>
-                                    <option value="creative">Creative</option>
-                                </select>
-                            </div>
-                            <div class="column column-25">
-                                <label>Experience Level</label>
-                                <select>
-                                    <option value="">Any</option>
-                                    <option value="internship">Internship</option>
-                                    <option value="entry-level">Entry Level</option>
-                                    <option value="mid-level">Mid Level</option>
+                                <label>Skills</label>
+                                <select id="skillsFilter">
+                                    <option value="">Any Skills</option>
+                                    <option value="Python">Python</option>
+                                    <option value="JavaScript">JavaScript</option>
+                                    <option value="React">React</option>
+                                    <option value="SQL">SQL</option>
+                                    <option value="Machine Learning">Machine Learning</option>
                                 </select>
                             </div>
                             <div class="column column-25">
                                 <label>Status</label>
-                                <select>
-                                    <option value="">Any</option>
+                                <select id="searchStatusFilter">
+                                    <option value="">All Statuses</option>
+                                    <option value="pending">Pending Review</option>
                                     <option value="approved">Approved</option>
-                                    <option value="pending">Pending</option>
                                     <option value="complete">Complete</option>
+                                    <option value="incomplete">Incomplete</option>
                                 </select>
                             </div>
                             <div class="column column-25">
                                 <label>AI Confidence</label>
-                                <select>
-                                    <option value="">Any</option>
+                                <select id="searchConfidenceFilter">
+                                    <option value="">All Levels</option>
                                     <option value="high">High (>80%)</option>
                                     <option value="medium">Medium (60-80%)</option>
                                     <option value="low">Low (<60%)</option>
                                 </select>
                             </div>
                         </div>
-                        
                         <div class="row">
-                            <div class="column">
-                                <button class="button">Search</button>
-                                <button class="button button-outline">Save Search</button>
-                                <button class="button button-outline">Reset Filters</button>
+                            <div class="column column-100">
+                                <button class="button" id="advancedSearchBtn" style="margin-right: 10px;">Search</button>
+                                <button class="button button-outline" id="advancedResetBtn">Reset All Filters</button>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="card">
-                        <h4>Search Results</h4>
-                        <p>Use the filters above to find candidates. Results will appear here.</p>
+
+                    <div id="searchResults">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Name</th>
+                                    <th>Program</th>
+                                    <th>Skills</th>
+                                    <th>Status</th>
+                                    <th>AI Confidence</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="searchResultsBody">
+                                <tr>
+                                    <td colspan="7" style="text-align: center;">Use filters above to search for candidates</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
 
                 <!-- Reporting & Analytics Section (Initially Hidden) -->
                 <section id="reporting-section" class="content-section" style="display: none;">
                     <h2><i class="fas fa-chart-pie"></i> Reporting & Analytics</h2>
-                    
-                    <div class="row">
-                        <div class="column">
-                            <div class="card">
-                                <h4><i class="fas fa-chart-line"></i> Trends Over Time</h4>
-                                <div class="chart-container">
-                                    <canvas id="trendsChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="column column-50">
-                            <div class="card">
-                                <h4><i class="fas fa-graduation-cap"></i> Program Distribution</h4>
-                                <div class="chart-container">
-                                    <canvas id="programDistributionChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column column-50">
-                            <div class="card">
-                                <h4><i class="fas fa-briefcase"></i> Placement Status</h4>
-                                <div class="chart-container">
-                                    <canvas id="placementChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="column">
-                            <div class="card">
-                                <h4><i class="fas fa-download"></i> Generate Reports</h4>
-                                <div class="quick-actions">
-                                    <div class="quick-action-btn">
-                                        <i class="fas fa-file-alt"></i>
-                                        Monthly Summary
-                                    </div>
-                                    <div class="quick-action-btn">
-                                        <i class="fas fa-chart-bar"></i>
-                                        Skills Analysis
-                                    </div>
-                                    <div class="quick-action-btn">
-                                        <i class="fas fa-user-check"></i>
-                                        Placement Report
-                                    </div>
-                                    <div class="quick-action-btn">
-                                        <i class="fas fa-building"></i>
-                                        Employer Activity
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
 
-                <!-- Employer Insights Section (Initially Hidden) -->
-                <section id="employer-section" class="content-section" style="display: none;">
-                    <h2><i class="fas fa-building"></i> Employer Insights</h2>
-                    
-                    <div class="row">
-                        <div class="column column-25">
-                            <div class="card metric-card">
-                                <i class="fas fa-eye fa-2x" style="color: var(--primary);"></i>
-                                <div class="metric-value">1,247</div>
-                                <div class="metric-label">Profile Views</div>
-                                <div class="metric-change positive">+18% from last month</div>
-                            </div>
-                        </div>
-                        <div class="column column-25">
-                            <div class="card metric-card">
-                                <i class="fas fa-handshake fa-2x" style="color: var(--success);"></i>
-                                <div class="metric-value">42</div>
-                                <div class="metric-label">Interview Requests</div>
-                                <div class="metric-change positive">+5 from last month</div>
-                            </div>
-                        </div>
-                        <div class="column column-25">
-                            <div class="card metric-card">
-                                <i class="fas fa-briefcase fa-2x" style="color: var(--warning);"></i>
-                                <div class="metric-value">28</div>
-                                <div class="metric-label">Placements</div>
-                                <div class="metric-change positive">+3 from last month</div>
-                            </div>
-                        </div>
-                        <div class="column column-25">
-                            <div class="card metric-card">
-                                <i class="fas fa-search fa-2x" style="color: var(--secondary);"></i>
-                                <div class="metric-value">356</div>
-                                <div class="metric-label">Searches Conducted</div>
-                                <div class="metric-change positive">+22% from last month</div>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <div class="row">
                         <div class="column column-50">
                             <div class="card">
-                                <h4><i class="fas fa-chart-line"></i> Employer Activity</h4>
+                                <h4><i class="fas fa-chart-bar"></i> Monthly Profile Submissions</h4>
                                 <div class="chart-container">
-                                    <canvas id="employerActivityChart"></canvas>
+                                    <canvas id="monthlySubmissionsChart"></canvas>
                                 </div>
                             </div>
                         </div>
                         <div class="column column-50">
                             <div class="card">
-                                <h4><i class="fas fa-industry"></i> Top Industries</h4>
+                                <h4><i class="fas fa-chart-line"></i> Placement Readiness Trend</h4>
                                 <div class="chart-container">
-                                    <canvas id="industriesChart"></canvas>
+                                    <canvas id="readinessTrendChart"></canvas>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
-                        <div class="column">
+                        <div class="column column-100">
                             <div class="card">
-                                <h4><i class="fas fa-list-alt"></i> Recent Employer Activity</h4>
+                                <h4><i class="fas fa-table"></i> Program Performance Metrics</h4>
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Employer</th>
-                                            <th>Activity</th>
-                                            <th>Candidate</th>
-                                            <th>Date</th>
+                                            <th>Program</th>
+                                            <th>Total Students</th>
+                                            <th>Completion Rate</th>
+                                            <th>Avg. AI Confidence</th>
+                                            <th>Placement Readiness</th>
+                                            <th>Top Skills</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="programMetricsBody">
                                         <tr>
-                                            <td>Tech Solutions Inc.</td>
-                                            <td>Requested Interview</td>
-                                            <td>John Smith</td>
-                                            <td>2023-10-24</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Data Analytics Pro</td>
-                                            <td>Viewed Profile</td>
-                                            <td>Sarah Johnson</td>
-                                            <td>2023-10-23</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Innovate Software</td>
-                                            <td>Shortlisted</td>
-                                            <td>Michael Brown</td>
-                                            <td>2023-10-22</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Digital Creations</td>
-                                            <td>Requested Interview</td>
-                                            <td>Emily Davis</td>
-                                            <td>2023-10-21</td>
+                                            <td colspan="6" style="text-align: center;">Loading program metrics...</td>
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="column column-100">
+                            <div class="card">
+                                <h4><i class="fas fa-download"></i> Export Reports</h4>
+                                <div class="quick-actions">
+                                    <div class="quick-action-btn" onclick="exportReport('student-profiles')">
+                                        <i class="fas fa-user-graduate"></i>
+                                        Student Profiles Report
+                                    </div>
+                                    <div class="quick-action-btn" onclick="exportReport('skills-inventory')">
+                                        <i class="fas fa-chart-bar"></i>
+                                        Skills Inventory Report
+                                    </div>
+                                    <div class="quick-action-btn" onclick="exportReport('placement-readiness')">
+                                        <i class="fas fa-briefcase"></i>
+                                        Placement Readiness Report
+                                    </div>
+                                    <div class="quick-action-btn" onclick="exportReport('comprehensive')">
+                                        <i class="fas fa-file-alt"></i>
+                                        Comprehensive Analytics
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1054,65 +890,983 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="api-client.js"></script>
-    <script src="app.js"></script>
     <script>
-        // Basic navigation functionality
+        // Global variables
+        let allProfiles = [];
+        let currentProfiles = [];
+        let charts = {};
+
+        // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
-            // Navigation between sections
+            initializeNavigation();
+            initializeEventListeners();
+            loadDashboardData();
+            initializeCharts();
+
+            // Set up logout button
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                if (confirm('Are you sure you want to logout?')) {
+                    window.location.href = '/';
+                }
+            });
+        });
+
+        // Navigation functionality
+        function initializeNavigation() {
             const navLinks = document.querySelectorAll('.nav-link');
             const contentSections = document.querySelectorAll('.content-section');
-            
+
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
+
                     // Remove active class from all links
                     navLinks.forEach(l => l.classList.remove('active'));
                     // Add active class to clicked link
                     this.classList.add('active');
-                    
+
                     // Hide all content sections
                     contentSections.forEach(section => {
                         section.style.display = 'none';
                     });
-                    
+
                     // Show the selected section
                     const sectionId = this.getAttribute('data-section') + '-section';
                     document.getElementById(sectionId).style.display = 'block';
+
+                    // Load section-specific data
+                    switch(this.getAttribute('data-section')) {
+                        case 'profiles':
+                            loadProfilesTable();
+                            break;
+                        case 'review':
+                            loadReviewQueue();
+                            break;
+                        case 'skills':
+                            loadSkillsAnalytics();
+                            break;
+                        case 'search':
+                            loadSearchInterface();
+                            break;
+                        case 'reporting':
+                            loadReportingData();
+                            break;
+                    }
                 });
             });
-            
+        }
+
+        // Event listeners
+        function initializeEventListeners() {
             // Quick action buttons
             document.getElementById('reviewProfilesBtn').addEventListener('click', function() {
-                navLinks.forEach(l => l.classList.remove('active'));
-                document.querySelector('[data-section="review"]').classList.add('active');
-                
-                contentSections.forEach(section => {
-                    section.style.display = 'none';
-                });
-                document.getElementById('review-section').style.display = 'block';
+                document.querySelector('[data-section="review"]').click();
             });
-            
+
             document.getElementById('searchCandidatesBtn').addEventListener('click', function() {
-                navLinks.forEach(l => l.classList.remove('active'));
-                document.querySelector('[data-section="search"]').classList.add('active');
-                
-                contentSections.forEach(section => {
-                    section.style.display = 'none';
-                });
-                document.getElementById('search-section').style.display = 'block';
+                document.querySelector('[data-section="search"]').click();
             });
-            
-            // Initialize charts (simplified version)
+
+            document.getElementById('generateReportBtn').addEventListener('click', function() {
+                document.querySelector('[data-section="reporting"]').click();
+            });
+
+            document.getElementById('sendRemindersBtn').addEventListener('click', function() {
+                alert('Reminder emails would be sent to students with incomplete profiles');
+            });
+
+            // Profile table filters
+            document.getElementById('applyFiltersBtn').addEventListener('click', loadProfilesTable);
+            document.getElementById('resetFiltersBtn').addEventListener('click', function() {
+                document.getElementById('searchInput').value = '';
+                document.getElementById('statusFilter').value = '';
+                loadProfilesTable();
+            });
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') loadProfilesTable();
+            });
+
+            // Review queue filters
+            document.getElementById('confidenceFilter').addEventListener('change', loadReviewQueue);
+            document.getElementById('sortReview').addEventListener('change', loadReviewQueue);
+
+            // Search filters
+            document.getElementById('advancedSearchBtn').addEventListener('click', performAdvancedSearch);
+            document.getElementById('advancedResetBtn').addEventListener('click', resetAdvancedSearch);
+        }
+
+        // Load dashboard data
+        async function loadDashboardData() {
+            try {
+                showLoading('dashboard-section');
+                const response = await fetch('/api/dashboard-stats');
+                const data = await response.json();
+
+                if (response.ok) {
+                    updateDashboardMetrics(data);
+                } else {
+                    console.error('Error loading dashboard data:', data.error);
+                    showError('dashboard-section', 'Failed to load dashboard data');
+                }
+            } catch (error) {
+                console.error('Error fetching dashboard data:', error);
+                showError('dashboard-section', 'Network error loading dashboard');
+            } finally {
+                hideLoading('dashboard-section');
+            }
+        }
+
+        // Update dashboard metrics with real data
+        function updateDashboardMetrics(data) {
+            // Update metric cards
+            document.getElementById('totalProfiles').textContent = data.total_profiles;
+            document.getElementById('completionRate').textContent = data.completion_rate + '%';
+            document.getElementById('placementReadiness').textContent = data.placement_readiness + '%';
+            document.getElementById('pendingReviews').textContent = data.pending_reviews;
+
+            // Update recent activity
+            const activityList = document.getElementById('recentActivityList');
+            activityList.innerHTML = '';
+            if (data.recent_activity && data.recent_activity.length > 0) {
+                data.recent_activity.forEach(activity => {
+                    const li = document.createElement('li');
+                    li.innerHTML = activity;
+                    activityList.appendChild(li);
+                });
+            } else {
+                activityList.innerHTML = '<li>No recent activity</li>';
+            }
+
+            // Update pipeline chart with real data
+            updatePipelineChart(data.status_breakdown);
+        }
+
+        // Load profiles table
+        async function loadProfilesTable() {
+            try {
+                showLoading('profiles-section');
+                const statusFilter = document.getElementById('statusFilter').value;
+                const searchQuery = document.getElementById('searchInput').value;
+
+                let url = '/api/profiles-table';
+                const params = new URLSearchParams();
+                if (statusFilter) params.append('status', statusFilter);
+                if (searchQuery) params.append('search', searchQuery);
+
+                if (params.toString()) url += '?' + params.toString();
+
+                const response = await fetch(url);
+                const profiles = await response.json();
+
+                if (response.ok) {
+                    updateProfilesTable(profiles);
+                    currentProfiles = profiles;
+                } else {
+                    console.error('Error loading profiles:', profiles.error);
+                    showError('profiles-section', 'Failed to load profiles');
+                }
+            } catch (error) {
+                console.error('Error fetching profiles:', error);
+                showError('profiles-section', 'Network error loading profiles');
+            } finally {
+                hideLoading('profiles-section');
+            }
+        }
+
+        // Update profiles table with real data
+        function updateProfilesTable(profiles) {
+            const tbody = document.getElementById('profilesTableBody');
+            tbody.innerHTML = '';
+
+            if (profiles.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center;">No profiles found</td></tr>';
+                return;
+            }
+
+            profiles.forEach(profile => {
+                const row = document.createElement('tr');
+
+                // Determine confidence class
+                let confidenceClass = 'confidence-medium';
+                if (profile.ai_confidence >= 80) confidenceClass = 'confidence-high';
+                else if (profile.ai_confidence < 60) confidenceClass = 'confidence-low';
+
+                // Determine status badge
+                let statusClass = 'status-pending';
+                let statusText = 'Pending';
+                if (profile.status === 'approved') {
+                    statusClass = 'status-approved';
+                    statusText = 'Approved';
+                } else if (profile.status === 'complete') {
+                    statusClass = 'status-complete';
+                    statusText = 'Complete';
+                } else if (profile.status === 'incomplete') {
+                    statusClass = 'status-incomplete';
+                    statusText = 'Incomplete';
+                }
+
+                row.innerHTML = `
+                    <td>${profile.student_id}</td>
+                    <td>${profile.name}</td>
+                    <td>${profile.program}</td>
+                    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                    <td>${profile.last_updated}</td>
+                    <td class="${confidenceClass}">${Math.round(profile.ai_confidence)}%</td>
+                    <td>
+                        <button class="action-btn btn-view" onclick="viewProfile(${profile.id})">View</button>
+                        <button class="action-btn btn-edit" onclick="generatePowerpoint(${profile.id})" title="Export to PowerPoint">
+                            <i class="fas fa-file-powerpoint"></i> PPT
+                        </button>
+                        ${profile.status === 'pending' ? `<button class="action-btn btn-approve" onclick="approveProfile(${profile.id})">Approve</button>` : ''}
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Load review queue
+        async function loadReviewQueue() {
+            try {
+                showLoading('review-section');
+                const confidenceFilter = document.getElementById('confidenceFilter').value;
+                const sortBy = document.getElementById('sortReview').value;
+
+                let url = '/api/review-queue';
+                const params = new URLSearchParams();
+                if (confidenceFilter) params.append('confidence', confidenceFilter);
+                if (sortBy) params.append('sort', sortBy);
+
+                if (params.toString()) url += '?' + params.toString();
+
+                const response = await fetch(url);
+                const queue = await response.json();
+
+                if (response.ok) {
+                    updateReviewQueue(queue);
+                } else {
+                    console.error('Error loading review queue:', queue.error);
+                    showError('review-section', 'Failed to load review queue');
+                }
+            } catch (error) {
+                console.error('Error fetching review queue:', error);
+                showError('review-section', 'Network error loading review queue');
+            } finally {
+                hideLoading('review-section');
+            }
+        }
+
+        // Update review queue with real data
+        function updateReviewQueue(queue) {
+            const container = document.getElementById('reviewQueue');
+            container.innerHTML = '';
+
+            if (queue.length === 0) {
+                container.innerHTML = '<div class="card"><p>No profiles pending review.</p></div>';
+                return;
+            }
+
+            queue.forEach(profile => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.style.marginBottom = '15px';
+
+                // Determine confidence class
+                let confidenceClass = 'confidence-medium';
+                if (profile.ai_confidence >= 80) confidenceClass = 'confidence-high';
+                else if (profile.ai_confidence < 60) confidenceClass = 'confidence-low';
+
+                // Generate skill tags from skills string
+                const skills = profile.skills ? profile.skills.split(',').slice(0, 4) : [];
+                const skillTags = skills.map(skill =>
+                    `<span class="skill-tag">${skill.trim()}</span>`
+                ).join('');
+
+                card.innerHTML = `
+                    <div class="row">
+                        <div class="column column-70">
+                            <h4>${profile.name} <span class="status-badge status-pending">Pending Review</span></h4>
+                            <p><strong>Program:</strong> ${profile.program}</p>
+                            <p><strong>AI Confidence:</strong> <span class="${confidenceClass}">${Math.round(profile.ai_confidence)}%</span></p>
+                            <p><strong>Flagged Issues:</strong> ${profile.flagged_issues ? profile.flagged_issues.join(', ') : 'No specific issues flagged'}</p>
+                            <div class="skill-tags">
+                                ${skillTags}
+                            </div>
+                        </div>
+                        <div class="column column-30" style="text-align: right;">
+                            <button class="button btn-view" onclick="viewProfile(${profile.id})">View Details</button>
+                            <button class="button btn-approve" onclick="approveProfile(${profile.id})">Approve</button>
+                            <button class="button button-outline" onclick="requestInfo(${profile.id})">Request Info</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Load skills analytics
+        async function loadSkillsAnalytics() {
+            try {
+                showLoading('skills-section');
+                const response = await fetch('/api/skills-analytics');
+                const data = await response.json();
+
+                if (response.ok) {
+                    updateSkillsAnalytics(data);
+                } else {
+                    console.error('Error loading skills analytics:', data.error);
+                    showError('skills-section', 'Failed to load skills analytics');
+                }
+            } catch (error) {
+                console.error('Error fetching skills analytics:', error);
+                showError('skills-section', 'Network error loading skills analytics');
+            } finally {
+                hideLoading('skills-section');
+            }
+        }
+
+        // Update skills analytics with real data
+        function updateSkillsAnalytics(data) {
+            // Update word cloud
+            const wordCloud = document.getElementById('skillsWordCloud');
+            wordCloud.innerHTML = '';
+
+            if (data.top_skills && data.top_skills.length > 0) {
+                data.top_skills.forEach((skillObj, index) => {
+                    const span = document.createElement('span');
+                    span.className = `word-${Math.min(5, Math.ceil(skillObj.count / 20))}`;
+                    span.textContent = skillObj.skill;
+                    span.title = `${skillObj.count} students`;
+                    wordCloud.appendChild(span);
+                });
+            } else {
+                wordCloud.innerHTML = '<span>No skills data available</span>';
+            }
+
+            // Update program distribution chart
+            updateProgramDistributionChart(data.program_distribution);
+        }
+
+        // Load search interface
+        async function loadSearchInterface() {
+            // Initialize with all profiles
+            await performAdvancedSearch();
+        }
+
+        // Perform advanced search
+        async function performAdvancedSearch() {
+            try {
+                showLoading('search-section');
+                const programFilter = document.getElementById('programFilter').value;
+                const skillsFilter = document.getElementById('skillsFilter').value;
+                const statusFilter = document.getElementById('searchStatusFilter').value;
+                const confidenceFilter = document.getElementById('searchConfidenceFilter').value;
+
+                let url = '/api/search-profiles';
+                const params = new URLSearchParams();
+                if (programFilter) params.append('program', programFilter);
+                if (skillsFilter) params.append('skills', skillsFilter);
+                if (statusFilter) params.append('status', statusFilter);
+                if (confidenceFilter) params.append('confidence', confidenceFilter);
+
+                if (params.toString()) url += '?' + params.toString();
+
+                const response = await fetch(url);
+                const profiles = await response.json();
+
+                if (response.ok) {
+                    updateSearchResults(profiles);
+                } else {
+                    console.error('Error searching profiles:', profiles.error);
+                    showError('search-section', 'Failed to search profiles');
+                }
+            } catch (error) {
+                console.error('Error searching profiles:', error);
+                showError('search-section', 'Network error searching profiles');
+            } finally {
+                hideLoading('search-section');
+            }
+        }
+
+        // Reset advanced search
+        function resetAdvancedSearch() {
+            document.getElementById('programFilter').value = '';
+            document.getElementById('skillsFilter').value = '';
+            document.getElementById('searchStatusFilter').value = '';
+            document.getElementById('searchConfidenceFilter').value = '';
+
+            performAdvancedSearch();
+        }
+
+        // Update search results
+        function updateSearchResults(profiles) {
+            const tbody = document.getElementById('searchResultsBody');
+            tbody.innerHTML = '';
+
+            if (profiles.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center;">No profiles match your search criteria</td></tr>';
+                return;
+            }
+
+            profiles.forEach(profile => {
+                const row = document.createElement('tr');
+
+                // Determine confidence class
+                let confidenceClass = 'confidence-medium';
+                if (profile.ai_confidence >= 80) confidenceClass = 'confidence-high';
+                else if (profile.ai_confidence < 60) confidenceClass = 'confidence-low';
+
+                // Determine status badge
+                let statusClass = 'status-pending';
+                let statusText = 'Pending';
+                if (profile.status === 'approved') {
+                    statusClass = 'status-approved';
+                    statusText = 'Approved';
+                } else if (profile.status === 'complete') {
+                    statusClass = 'status-complete';
+                    statusText = 'Complete';
+                } else if (profile.status === 'incomplete') {
+                    statusClass = 'status-incomplete';
+                    statusText = 'Incomplete';
+                }
+
+                // Get first few skills for display
+                const skillsPreview = profile.skills ?
+                    profile.skills.split(',').slice(0, 3).map(s => s.trim()).join(', ') :
+                    'No skills listed';
+
+                row.innerHTML = `
+                    <td>${profile.student_id}</td>
+                    <td>${profile.name}</td>
+                    <td>${profile.program}</td>
+                    <td>${skillsPreview}</td>
+                    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                    <td class="${confidenceClass}">${Math.round(profile.ai_confidence)}%</td>
+                    <td>
+                        <button class="action-btn btn-view" onclick="viewProfile(${profile.id})">View</button>
+                        <button class="action-btn btn-edit" onclick="generatePowerpoint(${profile.id})" title="Export to PowerPoint">
+                            <i class="fas fa-file-powerpoint"></i> PPT
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Load reporting data
+        async function loadReportingData() {
+            try {
+                showLoading('reporting-section');
+                const response = await fetch('/api/reporting-data');
+                const data = await response.json();
+
+                if (response.ok) {
+                    updateReportingCharts(data);
+                    updateProgramMetrics(data.program_metrics);
+                } else {
+                    console.error('Error loading reporting data:', data.error);
+                    showError('reporting-section', 'Failed to load reporting data');
+                }
+            } catch (error) {
+                console.error('Error fetching reporting data:', error);
+                showError('reporting-section', 'Network error loading reporting data');
+            } finally {
+                hideLoading('reporting-section');
+            }
+        }
+
+        // Update reporting charts with real data
+        function updateReportingCharts(data) {
+            // Monthly submissions chart
+            if (charts.monthlySubmissions && data.monthly_data) {
+                charts.monthlySubmissions.data.labels = data.monthly_data.months;
+                charts.monthlySubmissions.data.datasets[0].data = data.monthly_data.submissions;
+                charts.monthlySubmissions.update();
+            }
+
+            // Readiness trend chart
+            if (charts.readinessTrend && data.monthly_data) {
+                charts.readinessTrend.data.labels = data.monthly_data.months;
+                charts.readinessTrend.data.datasets[0].data = data.monthly_data.readiness;
+                charts.readinessTrend.update();
+            }
+        }
+
+        // Update program metrics table
+        function updateProgramMetrics(metrics) {
+            const tbody = document.getElementById('programMetricsBody');
+            tbody.innerHTML = '';
+
+            if (!metrics || metrics.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center;">No program metrics available</td></tr>';
+                return;
+            }
+
+            metrics.forEach(metric => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${metric.program}</td>
+                    <td>${metric.total_students}</td>
+                    <td>${metric.completion_rate}%</td>
+                    <td>${metric.avg_confidence}%</td>
+                    <td>${metric.placement_readiness}%</td>
+                    <td>${metric.top_skills}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Export report function
+        function exportReport(type) {
+            alert(`Exporting ${type} report... This would generate a downloadable file from the server.`);
+            // In a real implementation, this would call a backend endpoint
+            // window.location.href = `/api/export-report?type=${type}`;
+        }
+
+        // Save job template
+        function saveJobTemplate() {
+            const jobDescription = document.getElementById('jobDescription').value;
+            if (!jobDescription.trim()) {
+                alert('Please enter a job description before saving as template');
+                return;
+            }
+
+            alert('Job description saved as template!');
+            // In a real app, this would save to the database via API
+        }
+
+        // Profile actions
+        async function approveProfile(profileId) {
+            if (confirm('Are you sure you want to approve this profile?')) {
+                try {
+                    const response = await fetch(`/api/update-profile-status/${profileId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            status: 'approved'
+                        })
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        alert('Profile approved successfully!');
+                        // Reload the current view
+                        if (document.getElementById('review-section').style.display !== 'none') {
+                            loadReviewQueue();
+                        }
+                        if (document.getElementById('profiles-section').style.display !== 'none') {
+                            loadProfilesTable();
+                        }
+                        loadDashboardData(); // Refresh dashboard stats
+                    } else {
+                        alert('Error: ' + result.error);
+                    }
+                } catch (error) {
+                    console.error('Error approving profile:', error);
+                    alert('Error approving profile');
+                }
+            }
+        }
+
+        async function viewProfile(profileId) {
+            try {
+                showLoading('profiles-section');
+
+                const response = await fetch(`/api/profile-details/${profileId}`);
+                const profile = await response.json();
+
+                if (response.ok) {
+                    displayProfileModal(profile);
+                } else {
+                    console.error('Error loading profile details:', profile.error);
+                    alert('Failed to load profile details');
+                }
+            } catch (error) {
+                console.error('Error fetching profile details:', error);
+                alert('Network error loading profile details');
+            } finally {
+                hideLoading('profiles-section');
+            }
+        }
+
+        function displayProfileModal(profile) {
+            // Create modal HTML
+            const modalHTML = `
+                <div class="modal-overlay">
+                    <div class="modal-content">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3 style="margin: 0; color: var(--secondary);">
+                                <i class="fas fa-user-graduate"></i> ${profile.full_name}
+                            </h3>
+                            <button onclick="closeModal()" style="
+                                background: none;
+                                border: none;
+                                font-size: 1.5rem;
+                                cursor: pointer;
+                                color: var(--danger);
+                            ">&times;</button>
+                        </div>
+
+                        <div class="row">
+                            <div class="column column-30">
+                                ${profile.profile_picture ?
+                                    `<img src="/uploads/profile_pictures/${profile.profile_picture}"
+                                          alt="${profile.full_name}"
+                                          style="width: 100%; border-radius: 8px; border: 3px solid var(--light);">` :
+                                    `<div style="background: var(--light); padding: 40px; text-align: center; border-radius: 8px;">
+                                        <i class="fas fa-user fa-3x" style="color: #ccc;"></i>
+                                        <p style="margin-top: 10px;">No Photo</p>
+                                    </div>`
+                                }
+                            </div>
+                            <div class="column column-70">
+                                <div style="background: var(--light); padding: 15px; border-radius: 5px; margin-bottom: 15px;">
+                                    <h4 style="margin: 0 0 10px 0;">Quick Info</h4>
+                                    <div class="row">
+                                        <div class="column column-50">
+                                            <p><strong>Program:</strong> ${profile.program || 'Not specified'}</p>
+                                            <p><strong>Qualification:</strong> ${profile.qualification || 'Not specified'}</p>
+                                            <p><strong>Status:</strong> <span class="status-badge status-${profile.status}">${profile.status}</span></p>
+                                        </div>
+                                        <div class="column column-50">
+                                            <p><strong>Graduation:</strong> ${profile.graduation_year || 'Not specified'}</p>
+                                            <p><strong>Experience Level:</strong> ${profile.experience_level || 'Not specified'}</p>
+                                            <p><strong>AI Confidence:</strong> <span class="confidence-${profile.ai_confidence >= 80 ? 'high' : profile.ai_confidence < 60 ? 'low' : 'medium'}">${Math.round(profile.ai_confidence)}%</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-details" style="margin-top: 20px;">
+                            ${profile.ai_profile_text ?
+                                `<div style="white-space: pre-wrap; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6;">
+                                    ${profile.ai_profile_text}
+                                </div>` :
+                                `<div style="background: #fff3cd; padding: 15px; border-radius: 5px; border-left: 4px solid #ffc107;">
+                                    <i class="fas fa-exclamation-triangle"></i> No profile text generated yet.
+                                </div>`
+                            }
+                        </div>
+
+                        <div class="additional-info" style="margin-top: 20px;">
+                            <div class="row">
+                                <div class="column column-50">
+                                    <h4><i class="fas fa-cogs"></i> Skills</h4>
+                                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px;">
+                                        ${profile.skills ? profile.skills.split(',').map(skill =>
+                                            `<span class="skill-tag">${skill.trim()}</span>`
+                                        ).join('') : 'No skills specified'}
+                                    </div>
+                                </div>
+                                <div class="column column-50">
+                                    <h4><i class="fas fa-bullseye"></i> Career Goal</h4>
+                                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px;">
+                                        ${profile.goal || 'No career goal specified'}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 15px;">
+                                <h4><i class="fas fa-heart"></i> Interests & Specialization</h4>
+                                <div style="background: #f8f9fa; padding: 15px; border-radius: 5px;">
+                                    ${profile.interests || 'No interests specified'}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 25px; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
+                            ${profile.status === 'pending' ?
+                                `<button class="button btn-approve" onclick="approveProfile(${profile.id}); closeModal();" style="margin-right: 10px;">
+                                    <i class="fas fa-check"></i> Approve Profile
+                                </button>` : ''
+                            }
+                            <button class="button" onclick="generatePowerpoint(${profile.id})" style="margin-right: 10px;">
+                                <i class="fas fa-file-powerpoint"></i> Export to PowerPoint
+                            </button>
+                            <button class="button button-outline" onclick="closeModal()">Close</button>
+                            ${profile.status === 'pending' ?
+                                `<button class="button" onclick="requestInfo(${profile.id}); closeModal();" style="margin-left: 10px;">
+                                    <i class="fas fa-question-circle"></i> Request Information
+                                </button>` : ''
+                            }
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Add modal to page
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+        }
+
+        function closeModal() {
+            const modal = document.querySelector('.modal-overlay');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        // Add click outside to close
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                closeModal();
+            }
+        });
+
+        async function generatePowerpoint(profileId) {
+            try {
+                // Show loading state
+                const modalContent = document.querySelector('.modal-content');
+                if (modalContent) {
+                    modalContent.classList.add('loading');
+                }
+
+                // Direct download instead of API generation
+                const downloadLink = document.createElement('a');
+                downloadLink.href = `/download-powerpoint/${profileId}`;
+                downloadLink.style.display = 'none';
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+
+                alert('✅ PowerPoint download started!');
+
+            } catch (error) {
+                console.error('Error generating PowerPoint:', error);
+                alert('❌ Error downloading PowerPoint');
+            } finally {
+                // Restore modal state
+                const modalContent = document.querySelector('.modal-content');
+                if (modalContent) {
+                    modalContent.classList.remove('loading');
+                }
+            }
+        }
+
+        function requestInfo(profileId) {
+            alert(`Request info for profile ${profileId} - This would send a notification to the student`);
+            // Implementation for requesting additional information
+        }
+
+        // Complete matching functionality
+        async function matchCandidates() {
+            const jobDescription = document.getElementById('jobDescription').value;
+            if (!jobDescription.trim()) {
+                alert('Please enter a job description');
+                return;
+            }
+
+            console.log('Starting candidate matching...');
+
+            // Show loading state
+            const skillsSection = document.getElementById('skills-section');
+            const originalContent = skillsSection.innerHTML;
+            skillsSection.innerHTML = `
+                <div style="text-align: center; padding: 40px;">
+                    <i class="fas fa-spinner fa-spin fa-2x" style="color: var(--primary);"></i>
+                    <p style="margin-top: 15px;">Finding matching candidates...</p>
+                </div>
+            `;
+
+            try {
+                // Ensure profiles are loaded
+                if (currentProfiles.length === 0) {
+                    console.log('Loading profiles...');
+                    await loadProfilesTable();
+                }
+
+                console.log('Profiles loaded:', currentProfiles.length);
+
+                const keywords = extractKeywords(jobDescription);
+                console.log('Keywords extracted:', keywords);
+
+                const results = calculateMatches(keywords);
+                console.log('Matches found:', results.length);
+
+                // Restore original content and display results
+                skillsSection.innerHTML = originalContent;
+                displayMatchingResults(results);
+
+            } catch (error) {
+                console.error('Error in matchCandidates:', error);
+                skillsSection.innerHTML = originalContent;
+                alert('Error matching candidates: ' + error.message);
+            }
+        }
+
+        function extractKeywords(jobDescription) {
+            const commonSkills = [
+                'python', 'java', 'javascript', 'typescript', 'sql', 'html', 'css',
+                'react', 'angular', 'vue', 'node', 'express', 'django', 'flask',
+                'mongodb', 'mysql', 'postgresql', 'aws', 'azure', 'docker',
+                'kubernetes', 'git', 'agile', 'scrum', 'machine learning', 'ai',
+                'data analysis', 'web development', 'mobile development', 'ux', 'ui',
+                'software', 'engineering', 'development', 'programming', 'coding'
+            ];
+
+            const words = jobDescription.toLowerCase().split(/\W+/);
+            const uniqueKeywords = [...new Set(words.filter(word =>
+                commonSkills.includes(word) ||
+                (word.length > 4 && !['description', 'requirements', 'qualifications', 'candidate'].includes(word))
+            ))];
+
+            return uniqueKeywords;
+        }
+
+        function calculateMatches(keywords) {
+            if (!currentProfiles || currentProfiles.length === 0) {
+                console.error('No profiles available for matching');
+                return [];
+            }
+
+            return currentProfiles.map(profile => {
+                const score = calculateMatchScore(profile, keywords);
+
+                return {
+                    id: profile.id,
+                    name: profile.name,
+                    score: score,
+                    skills: profile.skills || 'No skills specified',
+                    program: profile.program || 'Not specified',
+                    ai_confidence: profile.ai_confidence || 0,
+                    student_id: profile.student_id
+                };
+            })
+            .filter(result => result.score >= 40)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 5);
+        }
+
+        function calculateMatchScore(profile, keywords) {
+            if (keywords.length === 0) return 50;
+
+            let score = 0;
+            const profileText = ((profile.skills || '') + ' ' + (profile.program || '')).toLowerCase();
+
+            // Check for keyword matches
+            keywords.forEach(keyword => {
+                if (profileText.includes(keyword)) {
+                    score += 15;
+                }
+            });
+
+            // Add bonus for profile completeness
+            if (profile.skills && profile.skills.length > 10) score += 10;
+            if (profile.program) score += 5;
+
+            // Add bonus for higher AI confidence
+            if (profile.ai_confidence > 80) {
+                score += 15;
+            } else if (profile.ai_confidence > 60) {
+                score += 10;
+            }
+
+            return Math.min(100, Math.max(0, score));
+        }
+
+        function displayMatchingResults(results) {
+            const container = document.getElementById('matchingResults');
+            const tbody = document.getElementById('matchingResultsBody');
+
+            if (results.length === 0) {
+                container.innerHTML = `
+                    <div class="card">
+                        <div style="text-align: center; padding: 40px;">
+                            <i class="fas fa-search fa-3x" style="color: #ccc; margin-bottom: 20px;"></i>
+                            <h4>No matches found</h4>
+                            <p>Try using different keywords in your job description.</p>
+                            <button class="button" onclick="document.getElementById('jobDescription').focus()">
+                                <i class="fas fa-edit"></i> Edit Job Description
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.style.display = 'block';
+                return;
+            }
+
+            tbody.innerHTML = '';
+            results.forEach(result => {
+                const row = document.createElement('tr');
+                let scoreClass = 'match-high';
+                if (result.score < 70) scoreClass = 'match-medium';
+                if (result.score < 50) scoreClass = 'match-low';
+
+                const skillsArray = result.skills && result.skills !== 'No skills specified' ?
+                    result.skills.split(',').map(s => s.trim()).filter(s => s) : [];
+
+                row.innerHTML = `
+                    <td>
+                        <strong>${result.name}</strong>
+                        <br>
+                        <small style="color: #666;">
+                            <i class="fas fa-id-card"></i> ${result.student_id}
+                            <br>
+                            <i class="fas fa-graduation-cap"></i> ${result.program}
+                        </small>
+                    </td>
+                    <td class="match-score ${scoreClass}" style="text-align: center; font-size: 1.1rem;">
+                        <strong>${Math.round(result.score)}%</strong>
+                    </td>
+                    <td>
+                        <div class="skill-tags">
+                            ${skillsArray.slice(0, 3).map(skill =>
+                                `<span class="skill-tag">${skill}</span>`
+                            ).join('')}
+                            ${skillsArray.length > 3 ?
+                                `<span class="skill-tag">+${skillsArray.length - 3} more</span>` : ''
+                            }
+                            ${skillsArray.length === 0 ? '<span class="skill-tag" style="background: #f8d7da; color: #721c24;">No skills</span>' : ''}
+                        </div>
+                    </td>
+                    <td>${result.program}</td>
+                    <td style="text-align: center;">
+                        <button class="button btn-view" onclick="viewMatchingProfile(${result.id})"
+                                style="padding: 8px 16px;">
+                            <i class="fas fa-eye"></i> View Profile
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            container.style.display = 'block';
+            container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        async function viewMatchingProfile(profileId) {
+            try {
+                console.log('Loading profile:', profileId);
+
+                const response = await fetch(`/api/profile-details/${profileId}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const profile = await response.json();
+                console.log('Profile loaded:', profile);
+
+                displayProfileModal(profile);
+
+            } catch (error) {
+                console.error('Error loading profile:', error);
+                alert('Error loading profile: ' + error.message);
+            }
+        }
+
+        // Chart management
+        function initializeCharts() {
+            // Pipeline chart
             const pipelineCtx = document.getElementById('pipelineChart').getContext('2d');
-            const pipelineChart = new Chart(pipelineCtx, {
+            charts.pipeline = new Chart(pipelineCtx, {
                 type: 'bar',
                 data: {
                     labels: ['Incomplete', 'Pending Review', 'Approved', 'Complete'],
                     datasets: [{
                         label: 'Number of Profiles',
-                        data: [35, 23, 124, 65],
+                        data: [0, 0, 0, 0],
                         backgroundColor: [
                             '#e74c3c',
                             '#f39c12',
@@ -1131,7 +1885,117 @@
                     }
                 }
             });
-        });
+
+            // Program distribution chart
+            const programCtx = document.getElementById('programDistributionChart').getContext('2d');
+            charts.programDistribution = new Chart(programCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        data: [],
+                        backgroundColor: [
+                            '#3498db', '#2ecc71', '#f39c12', '#e74c3c', '#9b59b6',
+                            '#1abc9c', '#34495e', '#e67e22', '#95a5a6', '#d35400'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right'
+                        }
+                    }
+                }
+            });
+
+            // Monthly submissions chart
+            const monthlyCtx = document.getElementById('monthlySubmissionsChart').getContext('2d');
+            charts.monthlySubmissions = new Chart(monthlyCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Profile Submissions',
+                        data: [],
+                        backgroundColor: '#F28F3B'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Readiness trend chart
+            const readinessCtx = document.getElementById('readinessTrendChart').getContext('2d');
+            charts.readinessTrend = new Chart(readinessCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Placement Readiness %',
+                        data: [],
+                        borderColor: '#59585B',
+                        backgroundColor: 'rgba(89, 88, 91, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        }
+
+        function updatePipelineChart(statusBreakdown) {
+            if (charts.pipeline) {
+                const statusOrder = ['incomplete', 'pending', 'approved', 'complete'];
+                const data = statusOrder.map(status => statusBreakdown[status] || 0);
+
+                charts.pipeline.data.datasets[0].data = data;
+                charts.pipeline.update();
+            }
+        }
+
+        function updateProgramDistributionChart(distribution) {
+            if (charts.programDistribution && distribution.programs && distribution.counts) {
+                charts.programDistribution.data.labels = distribution.programs;
+                charts.programDistribution.data.datasets[0].data = distribution.counts;
+                charts.programDistribution.update();
+            }
+        }
+
+        // Utility functions
+        function showLoading(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.classList.add('loading');
+        }
+
+        function hideLoading(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.classList.remove('loading');
+        }
+
+        function showError(sectionId, message) {
+            const section = document.getElementById(sectionId);
+            // You could implement a more sophisticated error display
+            console.error(`Error in ${sectionId}:`, message);
+        }
     </script>
 </body>
 </html>
